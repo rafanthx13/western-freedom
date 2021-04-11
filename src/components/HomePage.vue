@@ -9,22 +9,29 @@
                 >
             </b-navbar-item>
         </template>
+
         <template #start>
-            <b-navbar-item href="#">
-                Home
-            </b-navbar-item>
-            <b-navbar-item href="#">
-                Documentation
-            </b-navbar-item>
-            <b-navbar-dropdown label="Info">
-                <b-navbar-item href="#">
-                    About
+            <b-navbar-dropdown label="Menu">
+                <b-navbar-item href="#" tag="router-link" :to="{ path: '/new-person' }">
+                    New Person
                 </b-navbar-item>
-                <b-navbar-item href="#">
-                        Contact
-                    </b-navbar-item>
-                </b-navbar-dropdown>
-            </template>
+                <b-navbar-item href="#" tag="router-link" :to="{ path: '/list-person' }">
+                    List Person
+                </b-navbar-item>
+                <b-navbar-item href="#" tag="router-link" :to="{ path: '/new-tag-person' }">
+                    New Tag Person
+                </b-navbar-item>
+                <b-navbar-item href="#" tag="router-link" :to="{ path: '/new-tag-news' }">
+                    New Tag News
+                </b-navbar-item>
+                <b-navbar-item href="#" tag="router-link" :to="{ path: '/list-tag-person' }">
+                    List Tag Person
+                </b-navbar-item>
+                <b-navbar-item href="#" tag="router-link" :to="{ path: '/list-tag-news' }">
+                    List Tag News
+                </b-navbar-item>
+            </b-navbar-dropdown>
+        </template>
 
             <template #end>
                 <b-navbar-item tag="div">

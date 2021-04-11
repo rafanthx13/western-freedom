@@ -2,48 +2,53 @@
   "person": [
     {
       "id": 1,
-      "name": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "tag": [
-    {
-      "id": 1,
-      "name": "some comment",
-      "postId": 1
+      "name": "Joyce Hasselman",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Joice_Hasselmann_em_fevereiro_de_2019_%28cropped%29.jpg/220px-Joice_Hasselmann_em_fevereiro_de_2019_%28cropped%29.jpg"
     },
     {
-      "name": "atgaga",
+      "name": "Aomine Daiki",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Marcelo_Freixo_com_barba.png/382px-Marcelo_Freixo_com_barba.png",
       "id": 2
-    },
-    {
-      "name": "abc",
-      "id": 3
-    },
-    {
-      "name": "alfaomega",
-      "id": 4
-    },
-    {
-      "name": "olfas",
-      "id": 5
-    },
-    {
-      "name": "asfsaf",
-      "id": 6
-    },
-    {
-      "name": "almodenga",
-      "id": 7
-    },
-    {
-      "name": "sgasga",
-      "id": 8
     }
   ],
   "news": [
     {
-      "name": "typicode"
+      "id": 1,
+      "person_id": 1,
+      "title": "abc",
+      "comment": "defgh",
+      "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
+      "date": "02/04/2021"
+    }
+  ],
+  "tags_to_person": [
+    {
+      "id": 1,
+      "name": "PSL"
+    }
+  ],
+  "tags_to_news": [
+    {
+      "id": 1,
+      "name": "FakeNews"
+    },
+    {
+      "name": "tagperson1",
+      "id": 2
+    }
+  ],
+  "person_tag": [
+    {
+      "id": 1,
+      "id_person": 1,
+      "id_tag_person": 1
+    }
+  ],
+  "news_tag": [
+    {
+      "id": 1,
+      "id_news": 1,
+      "id_tag_news": 1
     }
   ]
 }

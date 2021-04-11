@@ -1,17 +1,27 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-// import HomePage from './../components/HomePage';
-import NewPerson from './../components/pages/NewPerson';
+import NewPerson from './../components/pages/person/NewPerson';
 import NewTag from './../components/pages/tag/NewTag';
+import ListTag from './../components/pages/tag/ListTag';
+import ListPerson from './../components/pages/person/ListPerson';
+import ProfilePerson from './../components/pages/person/ProfilePerson';
+import Home from './../components/pages/Home'
+import ErrorPage from './../components/pages/ErrorPage'
 
 let router = new VueRouter({
     mode: 'history',
     routes: [
-    //    { path: '/', redirect: '/index' },
-       { path: '/new-person', component: NewPerson},
-       { path: '/new-tag', component: NewTag }
-
+       { path: '/', redirect: 'home' },
+       { path: '/home', component: Home },
+       { path: '*', component: ErrorPage },
+       { path: '/new-person', component: NewPerson },
+       { path: '/list-person', component: ListPerson },
+       { path: '/new-tag-person', component: NewTag, props: { type_tag: 'Person' }},
+       { path: '/new-tag-news', component: NewTag, props: { type_tag: 'News' }},
+       { path: '/list-tag-person', component: ListTag, props: { type_tag: 'Person' } },
+       { path: '/list-tag-news', component: ListTag, props: { type_tag: 'News' } },
+       { path: '/profile-person', component: ProfilePerson },
     ]
 });
 

@@ -8,6 +8,7 @@ FrontEnd Components Packages : BUEFY (Vue + Bulma)
 
 https://buefy.org/documentation/start
 + Espaçamento: https://bulma.io/documentation/helpers/spacing-helpers/#configuration
++ Textos e Ftamanhod e fonte: https://bulma.io/documentation/elements/title/
 
 Colors
 
@@ -31,3 +32,37 @@ json-server --watch db.json
 
 Vue VSCode Snippets
 + vbase = gera template
+
+## BD
+
+person
++ id
++ name
++ img_url
+
+news
++ id
++ title
++ commment
++ person_id
++ url
++ date
+
+tags_to_person
++ id
++ name
+
+tags_to_news
++ id
++ name
+
+person_tag
++ id
++ id_person
++ id_tag_person
+
+news_tag
++ id
++ id_news
++ id_tag_news
+

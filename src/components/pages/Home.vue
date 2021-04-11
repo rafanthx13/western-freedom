@@ -1,6 +1,6 @@
 <template>
-    <div class="container box mx-5 my-5">
-
+    <div class="container mx-5 my-5">
+      <h1>HOME</h1>
     </div>
 </template>
 

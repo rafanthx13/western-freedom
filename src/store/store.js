@@ -11,12 +11,31 @@ if(window.location.hostname == 'localhost'){
 const routes = {
     state: {
       URL: URL,
-      tag: {
-        post: URL + '/tag',
-        put: URL + '/tag/',
-        delete: URL + '/tag/',
-        getAll: URL + '/tag',
+      person: {
+        post: URL + '/person',
+        put: URL + '/person/',
+        delete: URL + '/person/',
+        getAll: URL + '/person',
       },
+      news: {
+        post: URL + '/news',
+        put: URL + '/news/',
+        delete: URL + '/news/',
+        getAll: URL + '/news',
+      },
+      tags_to_person: {
+        post: URL + '/tags_to_person',
+        put: URL + '/tags_to_person/',
+        delete: URL + '/tags_to_person/',
+        getAll: URL + '/tags_to_person',
+      },
+      tags_to_news: {
+        post: URL + '/tags_to_news',
+        put: URL + '/tags_to_news/',
+        delete: URL + '/tags_to_news/',
+        getAll: URL + '/tags_to_news',
+      },
+
     },
     mutations: {},
     actions: {},

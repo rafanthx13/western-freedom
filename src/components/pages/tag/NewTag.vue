@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Adicionar nova Tag</h1>
+    <h1>Adicionar nova Tag {{ type_tag }}</h1>
     <section class="box">
       <ValidationObserver ref="observer">
         <form>
@@ -29,7 +29,8 @@ import {
   setInteractionMode,
 } from "vee-validate";
 
-import Tag from "./../../../api/Tag";
+import TagToNews from "../../../api/TagToNews";
+import TagToPerson from "../../../api/TagToPerson";
 
 setInteractionMode('eager')
 extend("required", {
@@ -48,6 +49,13 @@ export default {
     ValidationObserver,
   },
 
+  props: {
+    type_tag: {
+      type: String,
+      default: 'Person', // or 'News'
+    },
+  },
+
   data() {
     return {
       tag: {
@@ -61,19 +69,27 @@ export default {
     submit() {
       this.$refs.observer.validate().then(result => {
         if (result) {
-          Tag.post(this.tag).then( () => {
-            console.log('Success')
-            this.success()
-            this.clear()
-          })
-          .catch(err => {
-            console.log(err)
-            this.danger()
-
-          })
+          if(this.type_tag == 'Person'){
+            TagToPerson.post(this.tag).then( () => {
+              console.log('Success')
+              this.success()
+              this.clear()
+            }).catch(err => {
+              console.log(err)
+              this.danger()
+            })
+          } else {
+            TagToNews.post(this.tag).then( () => {
+              console.log('Success')
+              this.success()
+              this.clear()
+            }).catch(err => {
+              console.log(err)
+              this.danger()
+            })
+          }
         }
-      })
-      .catch((err) => {
+      }).catch((err) => {
         console.error(err)
       });
     },
@@ -84,30 +100,26 @@ export default {
     },
 
     success() {
-                this.$buefy.notification.open({
-                    message: 'Something happened correctly!',
-                    type: 'is-success'
-                })
-            },
+      this.$buefy.notification.open({
+          message: 'Something happened correctly!',
+          type: 'is-success'
+      })
+    },
 
-danger() {
-                const notif = this.$buefy.notification.open({
-                    duration: 5000,
-                    message: `Something's not good, also I'm on <b>bottom</b>`,
-                    position: 'is-bottom-right',
-                    type: 'is-danger',
-                    hasIcon: true
-                })
-                notif.$on('close', () => {
-                    this.$buefy.notification.open('Custom notification closed!')
-                })
-            }
+    danger() {
+      const notif = this.$buefy.notification.open({
+          duration: 5000,
+          message: `Something's not good, also I'm on <b>bottom</b>`,
+          position: 'is-bottom-right',
+          type: 'is-danger',
+          hasIcon: true
+      })
+      notif.$on('close', () => {
+          this.$buefy.notification.open('Custom notification closed!')
+      })
+    }
 
   },
-
-
-
-
 };
 </script>
 

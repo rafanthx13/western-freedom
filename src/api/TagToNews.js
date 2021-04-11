@@ -1,7 +1,7 @@
 import http from './http'
 import store from '../store';
 
-let tag = store.getters.getRoutes.tag;
+let tag = store.getters.getRoutes.tags_to_news;
 
 export default class {
 
