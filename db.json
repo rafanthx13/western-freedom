@@ -1,0 +1,49 @@
+{
+  "person": [
+    {
+      "id": 1,
+      "name": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "tag": [
+    {
+      "id": 1,
+      "name": "some comment",
+      "postId": 1
+    },
+    {
+      "name": "atgaga",
+      "id": 2
+    },
+    {
+      "name": "abc",
+      "id": 3
+    },
+    {
+      "name": "alfaomega",
+      "id": 4
+    },
+    {
+      "name": "olfas",
+      "id": 5
+    },
+    {
+      "name": "asfsaf",
+      "id": 6
+    },
+    {
+      "name": "almodenga",
+      "id": 7
+    },
+    {
+      "name": "sgasga",
+      "id": 8
+    }
+  ],
+  "news": [
+    {
+      "name": "typicode"
+    }
+  ]
+}
