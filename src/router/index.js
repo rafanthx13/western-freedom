@@ -2,12 +2,14 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import NewPerson from './../components/pages/person/NewPerson';
+import CreateNews from './../components/pages/news/CreateNews'
 import NewTag from './../components/pages/tag/NewTag';
 import ListTag from './../components/pages/tag/ListTag';
 import ListPerson from './../components/pages/person/ListPerson';
 import ProfilePerson from './../components/pages/person/ProfilePerson';
 import Home from './../components/pages/Home'
-import ErrorPage from './../components/pages/ErrorPage'
+import ErrorPage from './../components/common/ErrorPage'
+import EditPerson from './../components/pages/person/EditPerson'
 
 let router = new VueRouter({
     mode: 'history',
@@ -22,6 +24,8 @@ let router = new VueRouter({
        { path: '/list-tag-person', component: ListTag, props: { type_tag: 'Person' } },
        { path: '/list-tag-news', component: ListTag, props: { type_tag: 'News' } },
        { path: '/profile-person', component: ProfilePerson },
+       { path: '/create-news', component: CreateNews },
+       { path: '/edit-person', component: EditPerson },
     ]
 });
 

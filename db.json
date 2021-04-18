@@ -9,6 +9,11 @@
       "name": "Aomine Daiki",
       "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Marcelo_Freixo_com_barba.png/382px-Marcelo_Freixo_com_barba.png",
       "id": 2
+    },
+    {
+      "name": "Vladimir Putin",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vladimir_Putin_%282018-03-01%29_03_%28cropped%29.jpg/220px-Vladimir_Putin_%282018-03-01%29_03_%28cropped%29.jpg",
+      "id": 3
     }
   ],
   "news": [

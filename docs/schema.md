@@ -66,3 +66,22 @@ news_tag
 + id_news
 + id_tag_news
 
+## TODO
+
+BD: Fire Base
++ Pesquisar "Como fazer por JOIN no NOSQL"
+
+
++ Notify if get-alldão erro em listatgem
+
+
+Página Home
++ Deverá te rvários cards em ordme daquelas pessoas que tiveram uma última reclamaçâo, cerca de 10 de forma anárquica
+  - Ter no fim a opçâo de listagme completa: PAGINADA, em outra págiana
+
++ Construir um Footer
++ Fazer uma página Home
++ Fazer um sistema de login/senha para cadastrar as coisas
+
+
+
