@@ -36,9 +36,12 @@ Vue VSCode Snippets
 ## BD
 
 person
-+ id
-+ name
-+ img_url
++ id @required
++ name @required
++ description
++ birth_date
++ position @required
++ img_url @required
 
 news
 + id
@@ -84,4 +87,51 @@ Página Home
 + Fazer um sistema de login/senha para cadastrar as coisas
 
 
+
+###################
+
+TODO:
++ TAGS
+  - Criar Tags [x]
+  - Lista de Tags [x]
+  - Editar / Excluir Tags (Usar Modal para Edit/Delete)
++ ONLY PESSOA
+  - Criar Pessoa [x] {ADD: Img in URL}
+    - Incluir tags [x]
+  - Lista de Pessoas [x] {ADD: Sem URL}
+    - Editar Pessoa [] (Mesma tela de Criação)
+    - Excluir Pessoa [] (Usando Modal)
+  - Profile Pessoa [] (Ver ProfilePerson: Perfil + Lista de Notícias)
+    - Depende de Noticia X Pessoa []
+    - Componente NewsTile
++ ONLY NEWS (com News)
+  - Criar News []
+    - Adicionar tags []
+    - Adicionar pessoas como Tags []
+  - Listar News
+    - Editar News
+    - Excluir News
++ Home
+  - Cards Random de Pessoas, 12 delas
++ Search
+  - Buscar por tag_person ou tag_news
+
+TODO: OTHERS
++ REFACT
+  - NavBar listing urls
+  - Separar o que é page/ da pasta component/ pois, compinete são pedaços somente
+  - Emvez de template, Layout
+
+
+TODO: APRENDIZGEM E OTIMIZAÇÂO
++ Metodos glovais ou se há alguma forma de importalos, como 'success' e 'danger' que sao cahamdaos a todo hora. CENTRALIZÁ-LOS.
+  - Mensagem template para as notificaçôes
++ É melhor 'console.log(err)' ou outra coisa?
+
+FIXME:
++ List tas, se troca de news para person, nao carrega
+
+OUTROS ESTUDOS
++ NUXT
++ TypeScript com Vue
 

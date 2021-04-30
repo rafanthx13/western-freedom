@@ -12,6 +12,7 @@
 
       <template #start>
         <b-navbar-dropdown label="Menu">
+          
           <b-navbar-item
             href="#"
             tag="router-link"

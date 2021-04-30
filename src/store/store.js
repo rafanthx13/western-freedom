@@ -35,6 +35,12 @@ const routes = {
         delete: URL + '/tags_to_news/',
         getAll: URL + '/tags_to_news',
       },
+      tags_x_person: {
+        post: URL + '/tags_x_person',
+        put: URL + '/tags_x_person/',
+        delete: URL + '/tags_x_person/',
+        getAll: URL + '/tags_x_person',
+      },
 
     },
     mutations: {},

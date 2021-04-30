@@ -14,6 +14,51 @@
       "name": "Vladimir Putin",
       "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vladimir_Putin_%282018-03-01%29_03_%28cropped%29.jpg/220px-Vladimir_Putin_%282018-03-01%29_03_%28cropped%29.jpg",
       "id": 3
+    },
+    {
+      "name": "Aleksandr Dugin",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Aleksandr_Dugin_13981126000.jpg/220px-Aleksandr_Dugin_13981126000.jpg",
+      "id": 4
+    },
+    {
+      "name": "Alexander Dugin",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Aleksandr_Dugin_13981126000.jpg/220px-Aleksandr_Dugin_13981126000.jpg",
+      "description": "Ursa Maior",
+      "birth_date": "2021-04-04T03:00:00.000Z",
+      "position": "Ideologo",
+      "id": 5
+    },
+    {
+      "name": "gs",
+      "img_url": "gds",
+      "description": "gsdg",
+      "birth_date": "2021-04-21T03:00:00.000Z",
+      "position": "gdsg",
+      "id": 6
+    },
+    {
+      "name": "alfa",
+      "img_url": "alfa",
+      "description": "alfa",
+      "birth_date": "2021-04-12T03:00:00.000Z",
+      "position": "alfa",
+      "id": 7
+    },
+    {
+      "name": "beta",
+      "img_url": "beta",
+      "description": "alfabeta",
+      "birth_date": "2021-04-06T03:00:00.000Z",
+      "position": "alfabeta",
+      "id": 8
+    },
+    {
+      "name": "gama",
+      "img_url": "gama",
+      "description": "gama",
+      "birth_date": "2021-04-01T03:00:00.000Z",
+      "position": "gama",
+      "id": 9
     }
   ],
   "news": [
@@ -30,6 +75,18 @@
     {
       "id": 1,
       "name": "PSL"
+    },
+    {
+      "name": "Ideologo",
+      "id": 2
+    },
+    {
+      "name": "Esquerdista",
+      "id": 3
+    },
+    {
+      "name": "Revolucionario",
+      "id": 4
     }
   ],
   "tags_to_news": [
@@ -54,6 +111,13 @@
       "id": 1,
       "id_news": 1,
       "id_tag_news": 1
+    }
+  ],
+  "tags_x_person": [
+    {
+      "id": 1,
+      "id_tag_person": 4,
+      "id_person": 9
     }
   ]
 }
