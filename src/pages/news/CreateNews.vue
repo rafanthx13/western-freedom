@@ -76,8 +76,8 @@
 </template>
 
 <script>
-import News from "../../../api/News";
-import TagToNews from "../../../api/TagToNews";
+import News from "../../api/News";
+import TagToNews from "../../api/TagToNews";
 
 import { required, max } from "vee-validate/dist/rules";
 import {
@@ -106,11 +106,16 @@ news
 + url
 + date
 */
+
+import notificationMixin from './../../mixins/notifications'
+
 export default {
   components: {
     ValidationProvider,
     ValidationObserver,
   },
+
+  mixins: [notificationMixin],
 
   created() {
     TagToNews.getAll()
@@ -185,25 +190,25 @@ export default {
       this.$refs.observer.reset();
     },
 
-    success() {
-      this.$buefy.notification.open({
-        message: "Something happened correctly!",
-        type: "is-success",
-      });
-    },
+    // success() {
+    //   this.$buefy.notification.open({
+    //     message: "Something happened correctly!",
+    //     type: "is-success",
+    //   });
+    // },
 
-    danger() {
-      const notif = this.$buefy.notification.open({
-        duration: 5000,
-        message: `Something's not good, also I'm on <b>bottom</b>`,
-        position: "is-bottom-right",
-        type: "is-danger",
-        hasIcon: true,
-      });
-      notif.$on("close", () => {
-        this.$buefy.notification.open("Custom notification closed!");
-      });
-    },
+    // danger() {
+    //   const notif = this.$buefy.notification.open({
+    //     duration: 5000,
+    //     message: `Something's not good, also I'm on <b>bottom</b>`,
+    //     position: "is-bottom-right",
+    //     type: "is-danger",
+    //     hasIcon: true,
+    //   });
+    //   notif.$on("close", () => {
+    //     this.$buefy.notification.open("Custom notification closed!");
+    //   });
+    // },
   },
 };
 </script>

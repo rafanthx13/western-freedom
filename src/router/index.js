@@ -1,15 +1,15 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import NewPerson from './../components/pages/person/NewPerson';
-import CreateNews from './../components/pages/news/CreateNews'
-import NewTag from './../components/pages/tag/NewTag';
-import ListTag from './../components/pages/tag/ListTag';
-import ListPerson from './../components/pages/person/ListPerson';
-import ProfilePerson from './../components/pages/person/ProfilePerson';
-import Home from './../components/pages/Home'
-import ErrorPage from './../components/common/ErrorPage'
-import EditPerson from './../components/pages/person/EditPerson'
+import NewPerson from './../pages/person/NewPerson';
+import CreateNews from './../pages/news/CreateNews'
+import NewTag from './../pages/tag/NewTag';
+import ListTag from './../pages/tag/ListTag';
+import ListPerson from './../pages/person/ListPerson';
+import ProfilePerson from './../pages/person/ProfilePerson';
+import Home from './../pages/common/Home'
+import ErrorPage from './../pages/common/ErrorPage'
+import EditPerson from './../pages/person/EditPerson'
 
 let router = new VueRouter({
     mode: 'history',
@@ -19,13 +19,11 @@ let router = new VueRouter({
        { path: '*', component: ErrorPage },
        { path: '/new-person', component: NewPerson },
        { path: '/list-person', component: ListPerson },
-       { path: '/new-tag-person', component: NewTag, props: { type_tag: 'Person' }},
-       { path: '/new-tag-news', component: NewTag, props: { type_tag: 'News' }},
-       { path: '/list-tag-person', component: ListTag, props: { type_tag: 'Person' } },
-       { path: '/list-tag-news', component: ListTag, props: { type_tag: 'News' } },
+       { path: '/new-tag/:type_tag', component: NewTag },
+       { path: '/list-tag/:type_tag', component: ListTag },
        { path: '/profile-person', component: ProfilePerson },
        { path: '/create-news', component: CreateNews },
-       { path: '/edit-person', component: EditPerson },
+       { path: '/edit-person', component: EditPerson, name: 'EditPerson'},
     ]
 });
 

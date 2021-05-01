@@ -9,20 +9,13 @@
 
 <script>
 
-  import TagToNews from "../../../api/TagToNews";
-  import TagToPerson from "../../../api/TagToPerson";
+  import TagToNews from "../../api/TagToNews";
+  import TagToPerson from "../../api/TagToPerson";
 
   export default {
 
-    props: {
-      type_tag: {
-        type: String,
-        default: 'Person', // or 'News'
-      },
-    },
-
     created(){
-      if(this.type_tag == 'Person'){
+      if(this.type_tag == 'person'){
         TagToPerson.getAll().then( (result) => {
           this.tags = result.data;
         }).catch( () => {
@@ -39,6 +32,7 @@
 
     data() {
       return {
+        type_tag: this.$route.params.type_tag,
         tags: [],
         columns: [
           { field: 'id', label: 'ID', width: 40 },

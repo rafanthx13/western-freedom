@@ -1,20 +1,21 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <HomePage />
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <NavBar />
+    <!-- :key="$route.fullPath" foi adicionado para obrigar reload de um mesmo compoennte (Funcionou) -->
+    <router-view :key="$route.fullPath"></router-view>
+    <Footer />
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-import HomePage from '@/components/HomePage.vue';
+import NavBar from './components/layout/NavBar'
+import Footer from './components/layout/Footer'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld,
-    HomePage
+    NavBar,
+    Footer
   }
 }
 </script>
@@ -27,6 +28,4 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
-
 </style>

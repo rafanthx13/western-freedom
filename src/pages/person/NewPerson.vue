@@ -105,9 +105,11 @@
 </template>
 
 <script>
-import Person from "../../../api/Person";
-import TagToPerson from "../../../api/TagToPerson";
-import TagXPerson from "../../../api/TagXPerson";
+import Person from "../../api/Person";
+import TagToPerson from "../../api/TagToPerson";
+import TagXPerson from "../../api/TagXPerson";
+
+import notificationMixin from './../../mixins/notifications'
 
 import { required, max } from "vee-validate/dist/rules";
 import {
@@ -132,6 +134,8 @@ export default {
     ValidationProvider,
     ValidationObserver,
   },
+
+  mixins: [notificationMixin],
 
   data() {
     return {
@@ -203,25 +207,25 @@ export default {
       this.$refs.observer.reset();
     },
 
-    success() {
-      this.$buefy.notification.open({
-        message: "Something happened correctly!",
-        type: "is-success",
-      });
-    },
+    // success() {
+    //   this.$buefy.notification.open({
+    //     message: "Something happened correctly!",
+    //     type: "is-success",
+    //   });
+    // },
 
-    danger() {
-      const notif = this.$buefy.notification.open({
-        duration: 5000,
-        message: `Something's not good, also I'm on <b>bottom</b>`,
-        position: "is-bottom-right",
-        type: "is-danger",
-        hasIcon: true,
-      });
-      notif.$on("close", () => {
-        this.$buefy.notification.open("Custom notification closed!");
-      });
-    },
+    // danger() {
+    //   const notif = this.$buefy.notification.open({
+    //     duration: 5000,
+    //     message: `Something's not good, also I'm on <b>bottom</b>`,
+    //     position: "is-bottom-right",
+    //     type: "is-danger",
+    //     hasIcon: true,
+    //   });
+    //   notif.$on("close", () => {
+    //     this.$buefy.notification.open("Custom notification closed!");
+    //   });
+    // },
 
     getFilteredTags(text) {
       this.filteredTags = this.all_person_tags.filter((option) => {

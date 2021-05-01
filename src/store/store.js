@@ -53,4 +53,28 @@ const routes = {
 
   };
 
-  export default { routes };
+  const navbar = {
+    state: {
+      dropdown: {
+        'New Person': '/new-person',
+        'List Person': '/list-person',
+        'New Tag Person': '/new-tag/person',
+        'New Tag News': '/new-tag/news',
+        'List Tag Person': '/list-tag/person',
+        'List Tag News': '/list-tag/news',
+        'Profile Person': '/profile-person',
+        'Create News': '/create-news',
+        'Edit Person': '/edit-person'
+      }
+    },
+    mutations: {},
+    actions: {},
+    getters: {
+      getNavbar(state) {
+        return state;
+      }
+    }
+
+  };
+
+  export default { routes, navbar };

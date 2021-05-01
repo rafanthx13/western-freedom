@@ -29,8 +29,8 @@ import {
   setInteractionMode,
 } from "vee-validate";
 
-import TagToNews from "../../../api/TagToNews";
-import TagToPerson from "../../../api/TagToPerson";
+import TagToNews from "../../api/TagToNews";
+import TagToPerson from "../../api/TagToPerson";
 
 setInteractionMode('eager')
 extend("required", {
@@ -59,7 +59,8 @@ export default {
   data() {
     return {
       tag: {
-          name: ''
+          name: '',
+          type_tag: this.$route.params.type_tag,
       },
     };
   },
@@ -69,7 +70,7 @@ export default {
     submit() {
       this.$refs.observer.validate().then(result => {
         if (result) {
-          if(this.type_tag == 'Person'){
+          if(this.type_tag == 'person'){
             TagToPerson.post(this.tag).then( () => {
               console.log('Success')
               this.success()

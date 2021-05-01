@@ -17,4 +17,8 @@ export default class {
     return http.put(person.put + body.person_id, body);
   }
 
+  static delete(id){
+    return http.delete(person.delete + id);
+  }
+
 }
