@@ -30,6 +30,15 @@
               </b-field>
             </ValidationProvider>
 
+            <div class="card-image" style="width:400px; height:20%;">
+            <figure class="image is-4by3">
+              <img
+                :src="person.img_url ? person.img_url : './../../assets/camera-symbol.jpg'"
+                alt="A image"
+              />
+            </figure>
+          </div>
+
             <ValidationProvider
               v-slot="{ errors }"
               name="position"
@@ -54,31 +63,13 @@
             <b-field label="Data de Nascimento">
               <b-datepicker
                 v-model="person.birth_date"
-                :first-day-of-week="1"
-                placeholder="Click to select..."
+                locale="pt-br"
+                icon="calendar-today"
               >
-                <!-- <b-button
-                  label="Today"
-                  type="is-primary"
-                  icon-left="calendar-today"
-                  @click="person.birth_date = new Date()"
-                />
-                <b-button
-                  label="Clear"
-                  type="is-danger"
-                  icon-left="close"
-                  outlined
-                  @click="person.birth_date = null"
-                />
-                <b-button
-                  @click="$refs.datepicker.toggle()"
-                  icon-left="calendar-today"
-                  type="is-primary"
-                /> -->
               </b-datepicker>
             </b-field>
 
-            <b-field label="Enter some tags">
+            <b-field label="Insira Tags para a Pessoa">
               <b-taginput
                 v-model="person_tags"
                 :data="filteredTags"
@@ -87,7 +78,7 @@
                 :open-on-focus="true"
                 field="name"
                 icon="label"
-                placeholder="Add a tag"
+                placeholder="Adicione as tags"
                 @typing="getFilteredTags"
               >
               </b-taginput>
@@ -144,7 +135,7 @@ export default {
         name: "",
         img_url: "",
         description: "",
-        birth_date: null,
+        birth_date: new Date(),
         position: "",
       },
       filteredTags: [],
@@ -165,11 +156,12 @@ export default {
 
   methods: {
     submit() {
-      this.person.birth_date = moment(this.person.birth_date).format('MM-DD-YYYY');
-      let person_id = null
       this.$refs.observer.validate().then((result) => {
         if (result) {
-          Person.post(this.person)
+          const sendPerson = JSON.parse(JSON.stringify(this.person));
+          sendPerson.birth_date = moment(sendPerson.birth_date).format('MM-DD-YYYY');
+          let person_id = null
+          Person.post(sendPerson)
             .then( (result) => {
               person_id = result.data.id
               let mapping = this.person_tags.map( (el) => {
@@ -205,7 +197,6 @@ export default {
 
     clear() {
       this.person.name = "";
-      this.person.img_url = "";
       this.$refs.observer.reset();
     },
 

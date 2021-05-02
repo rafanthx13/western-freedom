@@ -42,15 +42,15 @@
 
       <!-- Column 2 : News -->
       <div class="column" style="padding: 0.75rem !important">
-        <div class="tile is-12 is-vertical">
-          <h1 class="is-title is-1">Notícias</h1>
+        <!-- <div class="title is-12 is-vertical"> -->
+           <h1 class="title is-4">Notícias</h1>
 
-          <div v-for="(value, key) in news" v-bind:key="key">
+          <div class="mb-4" v-for="(value, key) in news" v-bind:key="key">
             <NewsTile v-bind:news="value" v-bind:key="key" />
           </div>
 
           <br />
-        </div>
+        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -83,7 +83,6 @@ export default {
       this.initializeViewPerson()
     }
 
-
   },
 
   data() {
@@ -103,7 +102,7 @@ export default {
   methods: {
 
     initializeViewPerson(){
-      this.person.birth_date = moment(this.person.birth_date).format(
+      this.person.birth_date = moment(this.person.birth_date, "MM-DD-YYYY").format(
         "DD/MM/YYYY"
       ); // recebe no format MM-DD-YY
       let listNews = [];

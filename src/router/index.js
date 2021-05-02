@@ -12,6 +12,7 @@ import ErrorPage from './../pages/common/ErrorPage'
 import EditPerson from './../pages/person/EditPerson'
 import ViewPerson from './../pages/person/ViewPerson'
 import AddNewsToPerson from './../pages/news-person/AddNewsToPerson'
+import ListNews from './../pages/news/ListNews'
 
 let router = new VueRouter({
     mode: 'history',
@@ -27,7 +28,8 @@ let router = new VueRouter({
        { path: '/create-news', component: CreateNews },
        { path: '/edit-person', component: EditPerson, name: 'EditPerson'},
        { path: '/view-person/:id', component: ViewPerson, name: 'ViewPerson'},
-       { path: '/add-news-to-person/:id', component: AddNewsToPerson, name: 'AddNewsToPerson'}
+       { path: '/add-news-to-person/:id', component: AddNewsToPerson, name: 'AddNewsToPerson'},
+       { path: '/list-news', component: ListNews, name: 'ListNews' },
     ]
 });
 

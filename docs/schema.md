@@ -55,6 +55,8 @@ news
 + id
 + title
 + commment
++ source
++ description
 + person_id
 + url
 + date
@@ -121,9 +123,9 @@ TODO:
   - Criar News [x]
     - Adicionar tags [x]
     - Adicionar pessoas como Tags []
-  - Listar News
+  - Listar News [x]
     - Editar News
-    - Excluir News
+    - Excluir News [x]
 + Home
   - Cards Random de Pessoas, 12 delas
 + Search

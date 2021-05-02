@@ -7,7 +7,7 @@
             <ValidationProvider
               v-slot="{ errors }"
               name="Title"
-              rules="required|max:30"
+              rules="required"
             >
               <b-field label="Titulo">
                 <b-input
@@ -17,9 +17,35 @@
               </b-field>
             </ValidationProvider>
 
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="Subtitle"
+              rules="required"
+            >
+              <b-field label="Subtítulo">
+                <b-input
+                  v-model="news.subtitle"
+                  :error-messages="errors"
+                ></b-input>
+              </b-field>
+            </ValidationProvider>
+
             <ValidationProvider v-slot="{ errors }" name="URL" rules="required">
               <b-field label="URL da Noticia">
                 <b-input v-model="news.url" :error-messages="errors"></b-input>
+              </b-field>
+            </ValidationProvider>
+
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="Fonte"
+              rules="required"
+            >
+              <b-field label="Fonte">
+                <b-input
+                  v-model="news.source"
+                  :error-messages="errors"
+                ></b-input>
               </b-field>
             </ValidationProvider>
 
@@ -32,42 +58,45 @@
               ></b-input>
             </b-field>
 
+            <!-- DESCRIPTION -->
+            <b-field label="Descrição">
+              <b-input
+                maxlength="200"
+                type="textarea"
+                v-model="news.description"
+              ></b-input>
+            </b-field>
+
             <!-- TAGS -->
-            <b-field label="Enter some tags">
+            <b-field label="Tags de notícias">
               <b-taginput
                 v-model="news.news_tag"
                 :data="filteredTags"
                 autocomplete
-                :allow-new="allowNew"
-                :open-on-focus="openOnFocus"
+                :allow-new="false"
+                :open-on-focus="true"
                 field="name"
                 icon="label"
-                placeholder="Add a tag"
+                placeholder="Adicione as Tags"
                 @typing="getFilteredTags"
               >
               </b-taginput>
             </b-field>
 
             <!-- DATE -->
-            <b-field label="Select a date">
-        <b-datepicker v-model="news.date"
-            :first-day-of-week="1"
-            placeholder="Click to select...">
+            <b-field label="Selecione a data da notícia">
+              <b-datepicker
+                v-model="news.date"
+                locale="pt-br"
+                icon="calendar-today"
+              >
+              </b-datepicker>
+            </b-field>
 
-            <b-button
-                label="Today"
-                type="is-primary"
-                icon-left="calendar-today"
-                @click="date = new Date()" />
-
-            <b-button
-                label="Clear"
-                type="is-danger"
-                icon-left="close"
-                outlined
-                @click="date = null" />
-        </b-datepicker>
-    </b-field>
+            <!-- SUBMIT  -->
+            <b-button type="is-primary" @click="submit" class="my-3"
+              >Enviar</b-button
+            >
           </form>
         </ValidationObserver>
       </section>
@@ -78,6 +107,7 @@
 <script>
 import News from "../../api/News";
 import TagToNews from "../../api/TagToNews";
+import moment from "moment";
 
 import { required, max } from "vee-validate/dist/rules";
 import {
@@ -97,17 +127,7 @@ extend("max", {
   message: "O campo não pode ser maior que 30",
 });
 
-/*
-news
-+ id
-+ title
-+ commment
-+ person_id
-+ url
-+ date
-*/
-
-import notificationMixin from './../../mixins/notifications'
+import notificationMixin from "./../../mixins/notifications";
 
 export default {
   components: {
@@ -120,12 +140,7 @@ export default {
   created() {
     TagToNews.getAll()
       .then((result) => {
-        this.all_tags = result.data;
-        this.filteredTags = result.data;
-        // this.all_tags = this.all_tags.map( (el) => {
-        //   return el.name
-        // })
-        // console.log(this.all_tags)
+        this.all_news_tags = result.data;
       })
       .catch(() => {
         console.log("error");
@@ -137,37 +152,38 @@ export default {
       news: {
         title: "",
         url: "",
+        subtitle: "",
         description: "",
         comment: "",
         news_tag: [], // tags finais para emviar completas
         date: new Date(),
       },
       isSelectOnly: false,
-      all_tags: [],
-      allowNew: false,
-      openOnFocus: false,
-      filteredTags: null
+      all_news_tags: [],
+      filteredTags: [],
     };
   },
 
   methods: {
     getFilteredTags(text) {
-      this.filteredTags = this.all_tags.filter((option) => {
+      this.filteredTags = this.all_news_tags.filter((option) => {
         return (
-          option.name
-            .toString()
-            .toLowerCase()
-            .indexOf(text.toLowerCase()) >= 0
+          option.name.toString().toLowerCase().indexOf(text.toLowerCase()) >= 0
         );
       });
     },
 
     submit() {
-      this.$refs.observer
-        .validate()
-        .then((result) => {
+      this.$refs.observer.validate().then((result) => {
           if (result) {
-            News.post(this.person)
+            const sendNews = JSON.parse(JSON.stringify(this.news));
+            console.log("xxxx", sendNews.date);
+            sendNews.date = moment(sendNews.date, "DD/MM/YYYY").format(
+              "MM-DD-YYYY"
+            );
+            console.log("depois de moment", sendNews.date);
+            console.log(sendNews);
+            News.post(sendNews)
               .then(() => {
                 console.log("Success");
                 this.success();
@@ -177,6 +193,8 @@ export default {
                 console.log(err);
                 this.danger();
               });
+          } else {
+            console.log("rrro aki");
           }
         })
         .catch((err) => {
@@ -186,30 +204,9 @@ export default {
     },
 
     clear() {
-      this.person.name = "";
-      this.person.img_url = "";
-      this.$refs.observer.reset();
+      this.news.name = "";
     },
 
-    // success() {
-    //   this.$buefy.notification.open({
-    //     message: "Something happened correctly!",
-    //     type: "is-success",
-    //   });
-    // },
-
-    // danger() {
-    //   const notif = this.$buefy.notification.open({
-    //     duration: 5000,
-    //     message: `Something's not good, also I'm on <b>bottom</b>`,
-    //     position: "is-bottom-right",
-    //     type: "is-danger",
-    //     hasIcon: true,
-    //   });
-    //   notif.$on("close", () => {
-    //     this.$buefy.notification.open("Custom notification closed!");
-    //   });
-    // },
   },
 };
 </script>

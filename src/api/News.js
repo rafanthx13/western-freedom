@@ -14,16 +14,11 @@ export default class {
   }
 
   static getlist(listId){
-    console.log('listId', listId)
     let acc = ''
     for (let aid of listId){
-      console.log('aid', aid)
       acc += 'id=' + aid + '&'
     }
-    // remove last &
-    acc = acc.slice(0,-1)
-    console.log('acc', acc)
-    console.log('saiu a url', news.getlist + acc )
+    acc = acc.slice(0,-1) // remove last &
     return http.get(news.getlist + '?' + acc);
   }
 
@@ -34,5 +29,11 @@ export default class {
   static put(body){
     return http.put(news.put + body.news_id, body);
   }
+
+  static delete(id){
+    return http.delete(news.delete + id);
+  }
+
+
 
 }

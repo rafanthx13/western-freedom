@@ -73,7 +73,8 @@ const routes = {
         'List Tag News': '/list-tag/news',
         'Profile Person': '/profile-person',
         'Create News': '/create-news',
-        'Edit Person': '/edit-person'
+        'Edit Person': '/edit-person',
+        'List News': 'list-news',
       }
     },
     mutations: {},

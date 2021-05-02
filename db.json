@@ -12,6 +12,22 @@
       "birth_date": "05-12-2021",
       "position": "Presidente da Rússia",
       "id": 8
+    },
+    {
+      "name": "aomin",
+      "img_url": "sendPerson",
+      "description": "sendPerson",
+      "birth_date": "05-13-2015",
+      "position": "sendPerson",
+      "id": 9
+    },
+    {
+      "name": "sendPerson",
+      "img_url": "sendPerson",
+      "description": "sendPerson",
+      "birth_date": "05-02-2021",
+      "position": "sendPerson",
+      "id": 10
     }
   ],
   "news": [
@@ -38,6 +54,93 @@
       "comment": "commentNewsId03",
       "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
       "date": "02/04/2021"
+    },
+    {
+      "id": 6,
+      "person_id": 6,
+      "title": "NewsId06",
+      "comment": "commentNewsId06",
+      "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
+      "date": "02/04/2021"
+    },
+    {
+      "id": 7,
+      "person_id": 7,
+      "title": "NewsId07",
+      "comment": "commentNewsId07",
+      "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
+      "date": "02/04/2021"
+    },
+    {
+      "id": 8,
+      "person_id": 8,
+      "title": "NewsId08",
+      "comment": "commentNewsId08",
+      "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
+      "date": "02/04/2021"
+    },
+    {
+      "title": "Educação e turismo. Essas são as áreas que os franceses começarão a ter acesso a partir de segunda-feira (3), numa flexibilização gradual das medidas de restrição contra a pandemia de Covid-19.",
+      "url": "Educação e turismo. Essas são as áreas que os franceses começarão a ter acesso a partir de segunda-feira (3), numa flexibilização gradual das medidas de restrição contra a pandemia de Covid-19.",
+      "subtitle": "Educação e turismo. Essas são as áreas que os franceses começarão a ter acesso a partir de segunda-feira (3), numa flexibilização gradual das medidas de restrição contra a pandemia de Covid-19.",
+      "description": "Educação e turismo. Essas são as áreas que os franceses começarão a ter acesso a partir de segunda-feira (3), numa flexibilização gradual das medidas de restrição contra a pandemia de Covid-19.",
+      "comment": "Educação e turismo. Essas são as áreas que os franceses começarão a ter acesso a partir de segunda-feira (3), numa flexibilização gradual das medidas de restrição contra a pandemia de Covid-19.",
+      "news_tag": [
+        {
+          "name": "TagNews3",
+          "type_tag": "news",
+          "id": 3
+        },
+        {
+          "id": 1,
+          "name": "TagNews1"
+        }
+      ],
+      "date": "2021-05-01T03:00:00.000Z",
+      "source": "Educação e turismo. Essas são as áreas que os franceses começarão a ter acesso a partir de segunda-feira (3), numa flexibilização gradual das medidas de restrição contra a pandemia de Covid-19.",
+      "id": 9
+    },
+    {
+      "title": "Junta militar do Chade nomeia governo de transição",
+      "url": "Junta militar do Chade nomeia governo de transição",
+      "subtitle": "Junta militar do Chade nomeia governo de transição",
+      "description": "Junta militar do Chade nomeia governo de transição",
+      "comment": "Junta militar do Chade nomeia governo de transição",
+      "news_tag": [
+        {
+          "id": 1,
+          "name": "TagNews1"
+        },
+        {
+          "name": "TagNews4",
+          "type_tag": "news",
+          "id": 4
+        }
+      ],
+      "date": "02-10-2021",
+      "source": "Junta militar do Chade nomeia governo de transição",
+      "id": 10
+    },
+    {
+      "title": "Junta militar do Chade nomeia governo de transição",
+      "url": "Junta militar do Chade nomeia governo de transição",
+      "subtitle": "Junta militar do Chade nomeia governo de transição",
+      "description": "Junta militar do Chade nomeia governo de transição",
+      "comment": "Junta militar do Chade nomeia governo de transição",
+      "news_tag": [
+        {
+          "name": "TagNews4",
+          "type_tag": "news",
+          "id": 4
+        },
+        {
+          "id": 1,
+          "name": "TagNews1"
+        }
+      ],
+      "date": "Invalid date",
+      "source": "Junta militar do Chade nomeia governo de transição",
+      "id": 11
     }
   ],
   "tags_to_person": [
@@ -61,15 +164,20 @@
   "tags_to_news": [
     {
       "id": 1,
-      "name": "FakeNews"
+      "name": "TagNews1"
     },
     {
-      "name": "ggdgsg",
+      "name": "TagNews2",
       "type_tag": "news",
       "id": 2
     },
     {
-      "name": "name",
+      "name": "TagNews3",
+      "type_tag": "news",
+      "id": 3
+    },
+    {
+      "name": "TagNews4",
       "type_tag": "news",
       "id": 4
     }
@@ -177,6 +285,12 @@
         "id_tag_person": 1,
         "id_person": 10
       }
+    ],
+    [
+      {
+        "id_tag_person": 2,
+        "id_person": 10
+      }
     ]
   ],
   "news_x_person": [
@@ -189,6 +303,41 @@
       "id_news": 2,
       "id_person": 8,
       "id": 2
+    },
+    {
+      "id_news": 3,
+      "id_person": 8,
+      "id": 3
+    },
+    {
+      "id_news": 4,
+      "id_person": 8,
+      "id": 4
+    },
+    {
+      "id_news": 5,
+      "id_person": 8,
+      "id": 5
+    },
+    {
+      "id_news": 6,
+      "id_person": 8,
+      "id": 6
+    },
+    {
+      "id_news": 7,
+      "id_person": 8,
+      "id": 7
+    },
+    {
+      "id_news": 8,
+      "id_person": 8,
+      "id": 8
+    },
+    {
+      "id_news": 10,
+      "id_person": 8,
+      "id": 9
     }
   ]
 }

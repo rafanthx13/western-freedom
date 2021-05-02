@@ -16,7 +16,7 @@
           {{ props.row.position }}
         </b-table-column>
 
-        <b-table-column field="id" label="Edit" width="40" centered v-slot="props">
+        <b-table-column field="id" label="View" width="40" centered v-slot="props">
           <b-button class="is-info info-button" @click="handleViewProfile(props.row)">
             <b-icon pack="fas" icon="id-card"> </b-icon>
           </b-button>

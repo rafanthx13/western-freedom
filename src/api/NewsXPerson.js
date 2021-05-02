@@ -13,7 +13,6 @@ export default class {
     return http.get(news_x_person.getAll + '?id_person=' +id);
   }
 
-
   static post(body){
     return http.post(news_x_person.post, body);
   }
