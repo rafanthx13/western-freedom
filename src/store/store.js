@@ -16,12 +16,15 @@ const routes = {
         put: URL + '/person/',
         delete: URL + '/person/',
         getAll: URL + '/person',
+        getOne: URL + '/person/',
       },
       news: {
         post: URL + '/news',
         put: URL + '/news/',
         delete: URL + '/news/',
         getAll: URL + '/news',
+        getOne: URL + '/news/',
+        getlist: URL + '/news',
       },
       tags_to_person: {
         post: URL + '/tags_to_person',
@@ -40,6 +43,12 @@ const routes = {
         put: URL + '/tags_x_person/',
         delete: URL + '/tags_x_person/',
         getAll: URL + '/tags_x_person',
+      },
+      news_x_person: {
+        post: URL + '/news_x_person',
+        put: URL + '/news_x_person/',
+        delete: URL + '/news_x_person/',
+        getAll: URL + '/news_x_person',
       },
 
     },

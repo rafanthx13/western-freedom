@@ -10,6 +10,7 @@ import router from './router';
 
 Vue.use(Buefy)
 Vue.config.productionTip = false
+// Vue.use(require('vue-moment'));
 
 new Vue({
     store,

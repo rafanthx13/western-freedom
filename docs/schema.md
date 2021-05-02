@@ -77,6 +77,11 @@ news_tag
 + id_news
 + id_tag_news
 
+tags_to_news
++ id
++ id_news
++ id_person
+
 ## TODO
 
 BD: Fire Base
@@ -102,7 +107,7 @@ TODO:
 + TAGS
   - Criar Tags [x]
   - Lista de Tags [x]
-  - Editar / Excluir Tags (Usar Modal para Edit/Delete)
+  - Editar / Excluir Tags (Usar Modal para Edit/Delete) [x]
 + ONLY PESSOA
   - Criar Pessoa [x] {ADD: Img in URL}
     - Incluir tags [x]
@@ -113,8 +118,8 @@ TODO:
     - Depende de Noticia X Pessoa []
     - Componente NewsTile
 + ONLY NEWS (com News)
-  - Criar News []
-    - Adicionar tags []
+  - Criar News [x]
+    - Adicionar tags [x]
     - Adicionar pessoas como Tags []
   - Listar News
     - Editar News
@@ -134,6 +139,7 @@ TODO: OTHERS
 TODO: APRENDIZGEM E OTIMIZAÇÂO
 + Metodos glovais ou se há alguma forma de importalos, como 'success' e 'danger' que sao cahamdaos a todo hora. [x]
    - [Resolvido com Mixin: exporta métodos/variaveis/qualquer outra coisa entre calsses, como um extends de java]
++ global css to edit/delete inlisting
 
 FIXME:
 + Listas, se troca de news para person, nao carrega [x] [resolvido no router-view]
@@ -141,6 +147,9 @@ FIXME:
 OUTROS ESTUDOS
 + NUXT
 + TypeScript com Vue
+
+TODO:
++ BD: Perosn social_media
 
 
 

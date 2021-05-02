@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Adicionar nova Tag {{ type_tag }}</h1>
+    <h1>Adicionar nova Tag {{ this.type_tag }}</h1>
     <section class="box">
       <ValidationObserver ref="observer">
         <form>
@@ -49,19 +49,13 @@ export default {
     ValidationObserver,
   },
 
-  props: {
-    type_tag: {
-      type: String,
-      default: 'Person', // or 'News'
-    },
-  },
-
   data() {
     return {
+      type_tag: this.$route.params.type_tag,
       tag: {
           name: '',
-          type_tag: this.$route.params.type_tag,
       },
+
     };
   },
 

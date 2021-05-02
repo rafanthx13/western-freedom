@@ -13,8 +13,12 @@ export default class {
     return http.post(tag.post, body);
   }
 
-  static put(body){
-    return http.put(tag.put + body.tag_id, body);
+  static put(id, body){
+    return http.put(tag.put + id, body);
+  }
+
+  static delete(id){
+    return http.delete(tag.delete + id);
   }
 
 }

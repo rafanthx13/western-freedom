@@ -7,48 +7,35 @@
     },
     {
       "name": "Vladimir Putin",
-      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vladimir_Putin_%282018-03-01%29_03_%28cropped%29.jpg/220px-Vladimir_Putin_%282018-03-01%29_03_%28cropped%29.jpg",
-      "id": 3
-    },
-    {
-      "name": "5235",
-      "img_url": "252532",
-      "description": "252532",
-      "birth_date": "2021-05-26T03:00:00.000Z",
-      "position": "252532",
-      "id": 4
-    },
-    {
-      "name": "wettw",
-      "img_url": "twtw",
-      "description": "tw",
-      "birth_date": "2021-05-17T03:00:00.000Z",
-      "position": "twtw",
-      "id": 5
-    },
-    {
-      "name": "43242",
-      "img_url": "432423",
-      "description": "tw",
-      "birth_date": "2021-05-17T03:00:00.000Z",
-      "position": "twtw",
-      "id": 6
-    },
-    {
-      "name": "53453",
-      "img_url": "6363",
-      "description": "fsdfsd",
-      "birth_date": "2021-05-04T03:00:00.000Z",
-      "position": "243",
-      "id": 7
+      "img_url": "data:image/jpeg;base64,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",
+      "description": "Vladimir Vladimirovich Putin is a Russian politician and former intelligence officer who is serving as the current president of Russia since 2012, previously being in the office from 1999 until 2008. ",
+      "birth_date": "05-12-2021",
+      "position": "Presidente da Rússia",
+      "id": 8
     }
   ],
   "news": [
     {
       "id": 1,
       "person_id": 1,
-      "title": "abc",
-      "comment": "defgh",
+      "title": "NewsId01",
+      "comment": "commentNewsId01",
+      "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
+      "date": "02/04/2021"
+    },
+    {
+      "id": 2,
+      "person_id": 4,
+      "title": "NewsId02",
+      "comment": "commentNewsId02",
+      "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
+      "date": "02/04/2021"
+    },
+    {
+      "id": 3,
+      "person_id": 4,
+      "title": "NewsId03",
+      "comment": "commentNewsId03",
       "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
       "date": "02/04/2021"
     }
@@ -77,8 +64,14 @@
       "name": "FakeNews"
     },
     {
-      "name": "tagperson1",
+      "name": "ggdgsg",
+      "type_tag": "news",
       "id": 2
+    },
+    {
+      "name": "name",
+      "type_tag": "news",
+      "id": 4
     }
   ],
   "person_tag": [
@@ -171,6 +164,31 @@
         "id_person": 6
       }
     ],
-    []
+    [],
+    [
+      {
+        "id_tag_person": 3,
+        "id_person": 8
+      }
+    ],
+    [],
+    [
+      {
+        "id_tag_person": 1,
+        "id_person": 10
+      }
+    ]
+  ],
+  "news_x_person": [
+    {
+      "id_news": 1,
+      "id_person": 8,
+      "id": 1
+    },
+    {
+      "id_news": 2,
+      "id_person": 8,
+      "id": 2
+    }
   ]
 }

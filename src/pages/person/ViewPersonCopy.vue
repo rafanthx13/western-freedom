@@ -127,7 +127,7 @@
             </section>
           </article>
 
-          
+
         </div>
       </div>
     </div>
@@ -136,6 +136,10 @@
 
 <script>
 export default {
+
+  created(){
+    this.person = this.$route.params.model
+  },
 
   data() {
     return {

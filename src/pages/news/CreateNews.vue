@@ -137,9 +137,10 @@ export default {
       news: {
         title: "",
         url: "",
+        description: "",
         comment: "",
         news_tag: [], // tags finais para emviar completas
-        news: new Date(),
+        date: new Date(),
       },
       isSelectOnly: false,
       all_tags: [],

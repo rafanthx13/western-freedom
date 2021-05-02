@@ -110,6 +110,7 @@ import TagToPerson from "../../api/TagToPerson";
 import TagXPerson from "../../api/TagXPerson";
 
 import notificationMixin from './../../mixins/notifications'
+import moment from 'moment'
 
 import { required, max } from "vee-validate/dist/rules";
 import {
@@ -164,6 +165,7 @@ export default {
 
   methods: {
     submit() {
+      this.person.birth_date = moment(this.person.birth_date).format('MM-DD-YYYY');
       let person_id = null
       this.$refs.observer.validate().then((result) => {
         if (result) {

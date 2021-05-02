@@ -16,18 +16,16 @@
           {{ props.row.position }}
         </b-table-column>
 
-        <b-table-column
-          field="id"
-          label="Edit"
-          width="40"
-          centered
-          v-slot="props"
-        >
+        <b-table-column field="id" label="Edit" width="40" centered v-slot="props">
+          <b-button class="is-info info-button" @click="handleViewProfile(props.row)">
+            <b-icon pack="fas" icon="id-card"> </b-icon>
+          </b-button>
+        </b-table-column>
 
+        <b-table-column field="id" label="Edit" width="40" centered v-slot="props">
           <b-button class="is-warning edit-button" @click="handleEdit(props.row)">
             <b-icon pack="fas" icon="user-edit"> </b-icon>
           </b-button>
-
         </b-table-column>
 
         <b-table-column field="id" label="Delete" width="40" centered v-slot="props">
@@ -81,6 +79,13 @@ export default {
 
   methods: {
 
+    handleViewProfile(row){
+      this.$router.push({
+        name: "ViewPerson",
+        params: { model: row, id: row.id}
+      });
+    },
+
     handleEdit(row){
        this.$router.push({
         name: "EditPerson",
@@ -117,6 +122,10 @@ export default {
 
 .edit-button:hover {
   color: white;
+}
+
+.info-button {
+  color: #4f451b;
 }
 
 .delete-button {

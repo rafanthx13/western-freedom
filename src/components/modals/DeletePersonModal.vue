@@ -24,15 +24,6 @@
             </b-input>
           </b-field>
 
-          <b-field label="Position">
-            <b-input
-              type="text"
-              :value="position"
-              disabled
-            >
-            </b-input>
-          </b-field>
-
         </section>
         <footer class="modal-card-foot">
           <b-button label="Deletar" @click="deletePerson()" />

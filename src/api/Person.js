@@ -9,6 +9,10 @@ export default class {
     return http.get(person.getAll);
   }
 
+  static getOne(id){
+    return http.get(person.getOne + id);
+  }
+
   static post(body){
     return http.post(person.post, body);
   }
