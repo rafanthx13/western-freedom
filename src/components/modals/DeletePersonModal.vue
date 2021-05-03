@@ -6,14 +6,6 @@
           <button type="button" class="delete" @click="$emit('close')" />
         </header>
         <section class="modal-card-body">
-          <b-field label="Id">
-            <b-input
-              type="number"
-              v-model="id"
-              disabled
-            >
-            </b-input>
-          </b-field>
 
           <b-field label="Name">
             <b-input
@@ -24,10 +16,18 @@
             </b-input>
           </b-field>
 
+          <b-field label="Cargo">
+            <b-input
+              type="text"
+              v-model="position"
+              disabled
+            >
+            </b-input>
+          </b-field>
+
         </section>
         <footer class="modal-card-foot">
-          <b-button label="Deletar" @click="deletePerson()" />
-          <b-button label="Login" type="is-primary" />
+          <b-button label="Deletar" type="is-primary" @click="deletePerson()" />
         </footer>
       </div>
   </div>

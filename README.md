@@ -1,5 +1,7 @@
 # western-freedom
 
+Registrar Notícias de Políticaos, classificalas e fazer análises.
+
 ## Project setup
 ```
 npm install
@@ -18,6 +20,12 @@ npm run build
 ### Lints and fixes files
 ```
 npm run lint
+```
+
+## Run local Database
+
+```
+json-server --watch db.json
 ```
 
 ### Customize configuration

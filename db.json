@@ -14,63 +14,15 @@
       "id": 8
     },
     {
-      "name": "aomin",
-      "img_url": "sendPerson",
-      "description": "sendPerson",
-      "birth_date": "05-13-2015",
-      "position": "sendPerson",
+      "name": "Emmanuel Macron",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Emmanuel_Macron_in_2019.jpg/220px-Emmanuel_Macron_in_2019.jpg",
+      "description": "Emmanuel Jean-Michel Frédéric Macron (Amiens, 21 de dezembro de 1977) é um político, funcionário público e banqueiro francês, atual presidente do seu país.",
+      "birth_date": "12-21-1977",
+      "position": "Presidente da França",
       "id": 9
-    },
-    {
-      "name": "sendPerson",
-      "img_url": "sendPerson",
-      "description": "sendPerson",
-      "birth_date": "05-02-2021",
-      "position": "sendPerson",
-      "id": 10
     }
   ],
   "news": [
-    {
-      "id": 1,
-      "person_id": 1,
-      "title": "NewsId01",
-      "comment": "commentNewsId01",
-      "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
-      "date": "02/04/2021"
-    },
-    {
-      "id": 2,
-      "person_id": 4,
-      "title": "NewsId02",
-      "comment": "commentNewsId02",
-      "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
-      "date": "02/04/2021"
-    },
-    {
-      "id": 3,
-      "person_id": 4,
-      "title": "NewsId03",
-      "comment": "commentNewsId03",
-      "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
-      "date": "02/04/2021"
-    },
-    {
-      "id": 6,
-      "person_id": 6,
-      "title": "NewsId06",
-      "comment": "commentNewsId06",
-      "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
-      "date": "02/04/2021"
-    },
-    {
-      "id": 7,
-      "person_id": 7,
-      "title": "NewsId07",
-      "comment": "commentNewsId07",
-      "url": "https://en.wikipedia.org/wiki/Joice_Hasselmann",
-      "date": "02/04/2021"
-    },
     {
       "id": 8,
       "person_id": 8,
@@ -141,6 +93,23 @@
       "date": "Invalid date",
       "source": "Junta militar do Chade nomeia governo de transição",
       "id": 11
+    },
+    {
+      "title": "Le Pen perderia para Macron, mas ganharia da esquerda em presidencial na França",
+      "url": "https://istoe.com.br/le-pen-perderia-para-macron-mas-ganharia-da-esquerda-em-presidencial-na-franca/",
+      "subtitle": "A diretista Marine Le Pen ganharia a eleição presidencial de 2022 contra os candidatos de esquerda e ambientalistas, mas perderia contra candidatos de centro-direita e direita, entre eles o atual presidente Emmanuel Macron, segundo uma pesquisa neste domingo",
+      "comment": "Le Peen está crescendo",
+      "description": "A um ano da eleição presidencial e com base em vários cenários, Le Pen, presidente do Agrupamento Nacional (AN), dominaria o primeiro turno com 25% a 27% dos votos, seguida pelo liberal Emmanuel Macro",
+      "news_tag": [
+        {
+          "name": "TagNews2",
+          "type_tag": "news",
+          "id": 2
+        }
+      ],
+      "date": "Invalid date",
+      "source": "IstoE",
+      "id": 12
     }
   ],
   "tags_to_person": [
@@ -291,6 +260,12 @@
         "id_tag_person": 2,
         "id_person": 10
       }
+    ],
+    [
+      {
+        "id_tag_person": 3,
+        "id_person": 9
+      }
     ]
   ],
   "news_x_person": [
@@ -338,6 +313,16 @@
       "id_news": 10,
       "id_person": 8,
       "id": 9
+    },
+    {
+      "id_news": 12,
+      "id_person": 9,
+      "id": 10
+    },
+    {
+      "id_news": 12,
+      "id_person": 9,
+      "id": 11
     }
   ]
 }

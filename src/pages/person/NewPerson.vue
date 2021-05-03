@@ -1,13 +1,14 @@
 <template>
   <div class="container">
-    <div class="box mx-5 my-3">
+    <div class="box mx-6 my-3">
+      <h1 class="title is-4">Insira uma nova Pessoa</h1>
       <section>
         <ValidationObserver ref="observer">
           <form>
             <ValidationProvider
               v-slot="{ errors }"
               name="Name"
-              rules="required|max:30"
+              rules="required|max:50"
             >
               <b-field label="Nome">
                 <b-input
@@ -30,9 +31,15 @@
               </b-field>
             </ValidationProvider>
 
-            <div class="card-image" style="width:400px; height:20%;">
+            <div class="card-image" style="width:500px; height:20%; display: inline-block;">
             <figure class="image is-4by3">
-              <img
+              <div v-if="!person.img_url">
+                <img
+                src="./../../assets/camera-symbol.jpg"
+                alt="A xx"
+              />
+              </div>
+              <img v-if="person.img_url"
                 :src="person.img_url ? person.img_url : './../../assets/camera-symbol.jpg'"
                 alt="A image"
               />
@@ -54,7 +61,7 @@
 
             <b-field label="Descrição">
               <b-input
-                maxlength="200"
+                maxlength="500"
                 type="textarea"
                 v-model="person.description"
               ></b-input>
@@ -62,9 +69,12 @@
 
             <b-field label="Data de Nascimento">
               <b-datepicker
+                class="is-info"
                 v-model="person.birth_date"
                 locale="pt-br"
                 icon="calendar-today"
+                icon-prev="chevron-left"
+                icon-next="chevron-right"
               >
               </b-datepicker>
             </b-field>

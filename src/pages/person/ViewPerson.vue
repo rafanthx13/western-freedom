@@ -5,7 +5,7 @@
       <div class="column">
         <div class="card">
           <!-- Name -->
-          <h1 class="title is-4">{{ person.name }}</h1>
+          <h1 class="title is-4 pt-4">{{ person.name }}</h1>
           <!-- Show Image -->
           <div class="card-image">
             <figure class="image is-4by3">
@@ -43,10 +43,14 @@
       <!-- Column 2 : News -->
       <div class="column" style="padding: 0.75rem !important">
         <!-- <div class="title is-12 is-vertical"> -->
-           <h1 class="title is-4">Notícias</h1>
+           <h1 class="title is-4 pt-4">Notícias</h1>
 
           <div class="mb-4" v-for="(value, key) in news" v-bind:key="key">
             <NewsTile v-bind:news="value" v-bind:key="key" />
+          </div>
+
+          <div class="tile is-parent is-danger" v-if="news.length == 0">
+            <article class="tile is-child notification is-danger">Sem Noticias</article>
           </div>
 
           <br />
@@ -109,14 +113,22 @@ export default {
       NewsXPerson.getAllfromId(this.person.id)
         .then((result) => {
           listNews = result.data;
-          listNews = listNews.map((el) => el.id);
-          News.getlist(listNews)
+          listNews = listNews.map((el) => el.id_news)
+          console.log('listNews', listNews, listNews.length !=  0)
+          if(listNews.length !=  0){
+            News.getlist(listNews)
             .then((result) => {
+              // filtrar as noticais desse cara
+              console.log('entrou')
               this.news = result.data;
             })
             .catch(() => {
               console.log("error");
             });
+          } else {
+            this.news = []
+          }
+
         })
         .catch(() => {
           console.log("error");

@@ -49,21 +49,21 @@
               </b-field>
             </ValidationProvider>
 
-            <!-- COMMENT -->
-            <b-field label="Message">
-              <b-input
-                maxlength="200"
-                type="textarea"
-                v-model="news.comment"
-              ></b-input>
-            </b-field>
-
             <!-- DESCRIPTION -->
             <b-field label="Descrição">
               <b-input
-                maxlength="200"
+                maxlength="500"
                 type="textarea"
                 v-model="news.description"
+              ></b-input>
+            </b-field>
+
+            <!-- COMMENT -->
+            <b-field label="Comentário (Análise) da Notícia">
+              <b-input
+                maxlength="500"
+                type="textarea"
+                v-model="news.comment"
               ></b-input>
             </b-field>
 
@@ -177,12 +177,12 @@ export default {
       this.$refs.observer.validate().then((result) => {
           if (result) {
             const sendNews = JSON.parse(JSON.stringify(this.news));
-            console.log("xxxx", sendNews.date);
-            sendNews.date = moment(sendNews.date, "DD/MM/YYYY").format(
+            console.log("Data Recebida antes do MOMENT", sendNews.date);
+            sendNews.date = moment(new Date(sendNews.date), "DD/MM/YYYY").format(
               "MM-DD-YYYY"
             );
-            console.log("depois de moment", sendNews.date);
-            console.log(sendNews);
+            console.log("Data Após o Moment", sendNews.date);
+            console.log('Dado a ser enviado no POST CreateNews', sendNews);
             News.post(sendNews)
               .then(() => {
                 console.log("Success");

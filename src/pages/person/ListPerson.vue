@@ -8,11 +8,11 @@
           {{ props.row.id }}
         </b-table-column>
 
-        <b-table-column field="name" label="Name" v-slot="props">
+        <b-table-column field="name" label="Name" v-slot="props" centered>
           {{ props.row.name }}
         </b-table-column>
 
-        <b-table-column field="position" label="Position" v-slot="props">
+        <b-table-column field="position" label="Position" v-slot="props" centered>
           {{ props.row.position }}
         </b-table-column>
 
