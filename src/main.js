@@ -5,6 +5,7 @@ import store from './store'
 import 'buefy/dist/buefy.css'
 
 import './assets/main.scss';
+import './assets/global.css';
 
 import router from './router';
 

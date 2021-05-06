@@ -17,18 +17,18 @@
         </b-table-column>
 
         <b-table-column field="type_tag" label="Tipo de Tag" centered v-slot="props">
-          {{ props.row.type_tag }}
+          <span :class="class_type(props.row.type_tag)"> {{ props.row.type_tag }} </span>
         </b-table-column>
 
-        <b-table-column field="id" label="Edit" width="40" centered v-slot="props">
+        <b-table-column field="id" label="Editar" width="40" centered v-slot="props">
           <b-button class="is-warning edit-button" @click="handleEdit(props.row)">
-            <b-icon pack="fas" icon="user-edit"> </b-icon>
+            <b-icon pack="mdi" icon="account-edit"> </b-icon>
           </b-button>
         </b-table-column>
 
         <b-table-column field="id" label="Delete" width="40" centered v-slot="props">
           <b-button class="is-danger delete-button" @click="handleDelete(props.row)">
-            <b-icon pack="fas" icon="trash"> </b-icon>
+            <b-icon pack="mdi" icon="delete"> </b-icon>
           </b-button>
         </b-table-column>
 
@@ -43,8 +43,11 @@ import Tag from "../../api/Tag";
 import DeleteTagModal from '../../components/modals/DeleteTagModal'
 import EditTagModal from '../../components/modals/EditTagModal'
 import CreateTagModal from '../../components/modals/CreateTagModal'
+import notificationMixin from './../../mixins/notifications'
 
 export default {
+
+  mixins: [notificationMixin],
 
    data() {
     return {
@@ -63,7 +66,7 @@ export default {
         this.tags = result.data;
       })
       .catch(() => {
-        console.log("error");
+        this.notify_error("Erro ao buscar Tags");
       });
   },
 
@@ -79,10 +82,11 @@ export default {
         events: {
           'isCreated': (new_row) => {
             if(new_row){
-              console.log('foi criado', new_row)
               this.tags.push(new_row)
+              this.notify_success("Tag adicionada com sucesso")
             } else {
               console.log('foi deletado')
+              this.notify_error('Erro ao criar Tag')
             }
           }
         }
@@ -103,10 +107,21 @@ export default {
               this.tags = this.tags.filter( (el) => {
                   return el.id != idDeleted
               })
+              this.notify_success("Tag deletada com sucesso")
+            } else {
+              this.notify_error('Erro ao deletar a tag')
             }
           }
         }
       })
+    },
+
+    class_type(value) {
+      if (value == 'person') {
+          return 'tag is-success'
+      } else if (value == 'news') {
+          return 'tag is-warning'
+      }
     },
 
     handleEdit(row) {
@@ -120,6 +135,7 @@ export default {
         events: {
           'isEdited': (new_row) => {
               this.tags = this.tags.map(obj => this.tags.find(o => o.id === obj.id) || new_row);
+              this.notify_success("Tag editada com sucesso")
             }
           }
         });

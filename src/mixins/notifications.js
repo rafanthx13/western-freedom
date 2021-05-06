@@ -1,15 +1,16 @@
 var notificationsMixin = {
+
   methods: {
-    success() {
+    notify_success(message) {
       this.$buefy.notification.open({
-        message: "Something happened correctly!",
+        message: message,
         type: "is-success",
       });
     },
-    danger() {
+    notify_error(message) {
       const notif = this.$buefy.notification.open({
         duration: 5000,
-        message: `Something's not good, also I'm on <b>bottom</b>`,
+        message: message,
         position: "is-bottom-right",
         type: "is-danger",
         hasIcon: true,

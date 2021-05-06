@@ -142,8 +142,10 @@ export default {
       .then((result) => {
         this.all_news_tags = result.data;
       })
-      .catch(() => {
-        console.log("error");
+      .catch((err) => {
+        console.log(err);
+        this.notify_error('Erro ao buscar Tags')
+
       });
   },
 
@@ -186,20 +188,20 @@ export default {
             News.post(sendNews)
               .then(() => {
                 console.log("Success");
-                this.success();
+                this.notify_success("Notícias criada com sucesso")
                 this.clear();
               })
               .catch((err) => {
                 console.log(err);
-                this.danger();
+                this.notify_error('Erro ao criar Notícias')
               });
           } else {
-            console.log("rrro aki");
+            this.notify_error("Erro na validação dos dados");
           }
         })
         .catch((err) => {
           console.error(err);
-          this.danger();
+          this.notify_error("Erro na validação");
         });
     },
 

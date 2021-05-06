@@ -7,6 +7,10 @@ FrontEnd Components Packages : BUEFY = Vue + Bulma
 + Documentação: https://buefy.org/documentation/start
 + Espaçamento: https://bulma.io/documentation/helpers/spacing-helpers/#configuration
 + Textos e Ftamanhod e fonte: https://bulma.io/documentation/elements/title/
++ flex> https://bulma.io/documentation/helpers/flexbox-helpers/
+
+MATERIAL DESIGNS
+https://materialdesignicons.com/
 
 Colors
 + https://www.color-hex.com/color-palette/191

@@ -35,7 +35,7 @@
               <b-tab-item label="Link">
                 <a :href="news.url">
               {{ news.source }}
-              <b-icon pack="fas" icon="external-link-alt" size="is-small" />
+              <b-icon pack="mdi" icon="open-in-new" size="is-small" />
             </a>
               </b-tab-item>
 

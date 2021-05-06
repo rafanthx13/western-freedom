@@ -181,27 +181,24 @@ export default {
               // TODO no Back, deverá receber uma lista e fazer vários posts
               TagXPerson.post(mapping)
                 .then(() => {
-                  console.log("Success");
-                  this.success();
-                  this.clear();
+                  this.notify_success("Pessoa criada com sucesso");
                 })
                 .catch((err) => {
                   console.log(err);
-                  this.danger();
+                  this.notify_error("Erro ao criar Pessoa");
                 });
             })
             .catch((err) => {
               console.log(err);
-              this.danger();
+              this.notify_error();
             });
-          // TagsToPerson //erson_tgs tem a lista d objetos
-
-
+        } else {
+          this.notify_error("Dados invalidos");
         }
       })
       .catch((err) => {
         console.error(err);
-        this.danger();
+        this.notify_error("Erro na validação");
       });
     },
 

@@ -20,6 +20,14 @@
       "birth_date": "12-21-1977",
       "position": "Presidente da França",
       "id": 9
+    },
+    {
+      "name": "Arthur duval",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Arthur_do_Val_%28cropped%29.jpg/220px-Arthur_do_Val_%28cropped%29.jpg",
+      "description": "fasfsafafafa",
+      "birth_date": "03-15-1986",
+      "position": "Deputado Estadual de São Paulo",
+      "id": 10
     }
   ],
   "news": [
@@ -115,15 +123,23 @@
   "tags": [
     {
       "id": 1,
-      "name": "PSL"
+      "name": "PSL",
+      "type_tag": "person"
     },
     {
       "name": "Ideologo",
-      "id": 2
+      "id": 2,
+      "type_tag": "news"
     },
     {
       "name": "Esquerdista",
-      "id": 3
+      "id": 3,
+      "type_tag": "news"
+    },
+    {
+      "name": "agua",
+      "type_tag": "person",
+      "id": 4
     }
   ],
   "tags_to_person": [
@@ -279,6 +295,12 @@
       {
         "id_tag_person": 3,
         "id_person": 9
+      }
+    ],
+    [
+      {
+        "id_tag_person": 1,
+        "id_person": 10
       }
     ]
   ],

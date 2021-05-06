@@ -18,6 +18,8 @@ news
 + person_id
 + url
 + date
++ tags
++ Person_references
 
 tags_to_person
 + id
@@ -41,3 +43,12 @@ tags_to_news
 + id
 + id_news
 + id_person
+
+
+import notificationMixin from './../../mixins/notifications'
+
+mixins: [notificationMixin],
+
+this.notify_success("Tag adicionada com sucesso")
+
+this.notify_error('Erro ao criar Tag')

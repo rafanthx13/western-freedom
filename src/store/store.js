@@ -78,6 +78,7 @@ const routes = {
         'Edit Person': '/edit-person',
         'List News': '/list-news',
         'List Tag': '/list-tag',
+        'About Me': '/about-me'
       }
     },
     mutations: {},

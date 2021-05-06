@@ -3,5 +3,28 @@
     --green: #7ddc1f;
     --grey: #f5f5f5;
     --dark-grey: #444444;
-    --black: #000000;
-  }
+}
+
+.edit-button {
+  color: black !important;
+}
+
+.edit-button:hover {
+  color: white !important;
+}
+
+.info-button {
+  color: black !important;
+}
+
+.info-button:hover {
+  color: white !important;
+}
+
+.delete-button {
+  color: black !important;
+}
+
+.delete-button:hover {
+  color: white !important ;
+}

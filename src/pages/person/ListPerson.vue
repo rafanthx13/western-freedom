@@ -18,19 +18,19 @@
 
         <b-table-column field="id" label="View" width="40" centered v-slot="props">
           <b-button class="is-info info-button" @click="handleViewProfile(props.row)">
-            <b-icon pack="fas" icon="id-card"> </b-icon>
+            <b-icon pack="mdi" icon="card-account-details"> </b-icon>
           </b-button>
         </b-table-column>
 
         <b-table-column field="id" label="Edit" width="40" centered v-slot="props">
           <b-button class="is-warning edit-button" @click="handleEdit(props.row)">
-            <b-icon pack="fas" icon="user-edit"> </b-icon>
+            <b-icon pack="mdi" icon="account-edit"> </b-icon>
           </b-button>
         </b-table-column>
 
         <b-table-column field="id" label="Delete" width="40" centered v-slot="props">
           <b-button class="is-danger delete-button" @click="handleDelete(props.row)">
-            <b-icon pack="fas" icon="trash"> </b-icon>
+            <b-icon pack="mdi" icon="delete"> </b-icon>
           </b-button>
         </b-table-column>
 
@@ -40,33 +40,26 @@
       </b-table>
     </div>
 
-    <!-- <b-modal
-        v-model="isComponentModalActive"
-        has-modal-card
-        trap-focus
-        :destroy-on-hide="false"
-        aria-role="dialog"
-        aria-label="Example Modal"
-        aria-modal>
-        <template #default="props">
-            <DeletePersonModal v-bind="props.row" @close="props.close"/>
-        </template>
-    </b-modal> -->
+
   </div>
 </template>
 
 <script>
 import Person from "../../api/Person";
 import DeletePersonModal from "./../../components/modals/DeletePersonModal";
+import notificationMixin from './../../mixins/notifications'
 
 export default {
+
+  mixins: [notificationMixin],
+
   created() {
     Person.getAll()
       .then((result) => {
         this.persons = result.data;
       })
       .catch(() => {
-        console.log("error");
+        this.notify_error('Erro ao buscar pessoas')
       });
   },
 
@@ -108,6 +101,7 @@ export default {
               this.persons = this.persons.filter( (el) => {
                   return el.id != idDeleted
               })
+              this.notify_success("Pessoa deletada com sucesso")
             }
           }
         }
@@ -120,7 +114,7 @@ export default {
 
 <style  scoped>
 
-.edit-button:hover {
+/* .edit-button:hover {
   color: white;
 }
 
@@ -134,5 +128,5 @@ export default {
 
 .delete-button:hover {
   color: white;
-}
+} */
 </style>

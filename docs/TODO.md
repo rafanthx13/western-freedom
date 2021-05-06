@@ -1,5 +1,6 @@
 # TODO
 
+
 TODO:
 + TAGS
   - Criar Tags [x]
@@ -50,24 +51,31 @@ ESTRUTURA DO BANCO
 + Como há poucas tags e provavelmente pouca coisa, vai ser um bd no NoSQL mesmo, afinal, nem há tanta TAG
 +   - VAI REPETIR MAS É POUCA COISA
 
-TOODO
+TO
+06.05.2021
 + [X] Refatorar de 2 tabelas de tags para uma só, adicionando type para diferencia-las.
   - [X] Botão adicionar na parte de listagem COMO MODAL
-+ Feat: Por em todo lugar as notificaçêos e fazer seu template no mixin
-+ Em CreateNews, adicionar tag como pessoa para já associar
++ Feat: Por em todo lugar as notificaçêos e fazer seu template no mixin [x]
+  - aplicar em tudo [--]
++ Em listar notícias, deixar com colpase para mostrar mais ao invez de ir para uma página exclusaiva para a sua visualizaçâo [x]
++ Adicionar Modela de Login e SignUp [x]
++ + Loading nas coisas que usam AJAX [x]
++   - this.isLoading = true (no created)
++   - add vdata isLoading: false
++ Usar somente mdi nos icones (mdi) lembre-se que depende de chamar o css do cdn no index.html [x]
++ + Conferir as datas, ta dando uns probleminhas ainda [x]
++ Em ProfileView gerar a idade da pessoa dinamicamente [x]
++ Fazer página de About [x] e de Error [x]
++ css global [x] [global.css]
+
+
++ Tags: Filtrar tags de person e tag de news em cada parte que ela é chamda (nao fiz isso ainda) / e tirar outras tags
 + Na parte de adicionar notícias, refazer ela para poder editar/adicionar/deletar as noiticias relacionadas a uma pessoa atraves de put. O checkable deve habilitar tirar noiticia e adicionar noticia
-+ Loading nas coisas que usam AJAX
 + Editar pessoa/notícia será a mesma de criação
-+ Usar somente mdi nos icones (mdi) lembre-se que depende de chamar o css do cdn no index.html
-+ Em lsitar notícias, deixar com colpase para mostrar mais ao invez de ir para uma página exclusaiva para a sua visualizaçâo
-+ Conferir as datas, ta dando uns probleminhas ainda
 + Criar tela Home de personaliade com card e noticias lembrando bel-falcon, sistema de grid
-+ Modal de Login e v-if no Laout pra indicar que é admin
-  - Difernte do log-price-app, vai poder fazer muita caoisa ainda sem login
-+ Fazer página de About e de Error
-+ por mais css shadow nas classes com 'box'
-+ Por o tpitulo da página no NavBar (na ViewPerson, vai economzar espaço)
-  - Por complete_name nas pessoas, para sabermos sua descendencia
-+ Em ProfileView gerar a idade da pessoa dinamicamente
++ Por complete_name nas pessoas, para sabermos sua descendencia
++ Por nas new as pessoas correpsondentes e links para elas
 + + Gerenciar deletaçao de tag/entidade para suas respectivas entidades/tags
   + Ao deletar usuário, deletar a associaçâo das notícias. Remover a associaçâo de ID
++ + Em CreateNews, adicionar tag como pessoa para já associar
++ Quadro de amigos e inimigos

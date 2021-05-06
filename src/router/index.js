@@ -1,13 +1,17 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import Home from './../pages/common/Home'
+import NotFound from './../pages/common/NotFound'
+import AboutMe from './../pages/common/AboutMe'
+
 import NewPerson from './../pages/person/NewPerson';
 import CreateNews from './../pages/news/CreateNews'
 import ListTag from './../pages/tag/ListTag';
 import ListPerson from './../pages/person/ListPerson';
 import ProfilePerson from './../pages/person/ProfilePerson';
-import Home from './../pages/common/Home'
-import ErrorPage from './../pages/common/ErrorPage'
+
+
 import EditPerson from './../pages/person/EditPerson'
 import ViewPerson from './../pages/person/ViewPerson'
 import AddNewsToPerson from './../pages/news-person/AddNewsToPerson'
@@ -18,8 +22,9 @@ let router = new VueRouter({
     routes: [
        { path: '/', redirect: 'home' },
        { path: '/home', component: Home },
-       { path: '*', component: ErrorPage },
+       { path: '*', component: NotFound },
        { path: '/new-person', component: NewPerson },
+       { path: '/about-me', component: AboutMe },
        { path: '/list-person', component: ListPerson },
        { path: '/list-tag', component: ListTag },
        { path: '/profile-person', component: ProfilePerson },

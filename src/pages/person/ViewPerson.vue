@@ -29,9 +29,10 @@
         </div>
         <div class="content">
           <b-field label="Data de Nascimento">
-            <p>{{ person.birth_date }}</p>
+            <p>{{ person.birth_date }} - {{ age }} anos</p>
           </b-field>
         </div>
+        {{ this.start_date }}
         <b-button
           label="Adicionar Notícias"
           type="is-primary"
@@ -72,23 +73,6 @@ export default {
     NewsTile,
   },
 
-  created() {
-    if(!this.$route.params.model){
-      Person.getOne(this.$route.params.id)
-        .then((result) => {
-          this.person = result.data;
-          this.initializeViewPerson()
-        })
-        .catch(() => {
-          console.log("error");
-        });
-    } else {
-      this.person = this.$route.params.model;
-      this.initializeViewPerson()
-    }
-
-  },
-
   data() {
     return {
       activeTab: 0,
@@ -99,39 +83,60 @@ export default {
         birth_date: null,
         position: "",
       },
+      start_date: '',
+      age: 0,
       news: [],
     };
   },
+
+  created() {
+    if(!this.$route.params.model){
+      Person.getOne(this.$route.params.id)
+        .then((result) => {
+          this.person = result.data;
+          this.age = moment().diff( moment(this.person.birth_date, "MM-DD-YYYY"), 'years');
+          this.initializeViewPerson()
+        })
+        .catch((err) => {
+          console.log(err)
+          console.log("error");
+        });
+    } else {
+      this.person = this.$route.params.model;
+      this.initializeViewPerson()
+    }
+
+
+
+  },
+
+
 
   methods: {
 
     initializeViewPerson(){
       this.person.birth_date = moment(this.person.birth_date, "MM-DD-YYYY").format(
         "DD/MM/YYYY"
-      ); // recebe no format MM-DD-YY
+      ); // recebe no format DD-MM-YYYY e converte para DD/MM/YYYY
       let listNews = [];
       NewsXPerson.getAllfromId(this.person.id)
         .then((result) => {
-          listNews = result.data;
-          listNews = listNews.map((el) => el.id_news)
-          console.log('listNews', listNews, listNews.length !=  0)
-          if(listNews.length !=  0){
-            News.getlist(listNews)
+          listNews = result.data.map((el) => el.id_news)
+          if(listNews.length != 0){
+            News.getlist(listNews) // filtrar as noticais desse cara
             .then((result) => {
-              // filtrar as noticais desse cara
-              console.log('entrou')
               this.news = result.data;
             })
-            .catch(() => {
-              console.log("error");
+            .catch((err) => {
+              console.err(err);
             });
           } else {
-            this.news = []
+            this.news = [] // sem noticias
           }
 
         })
-        .catch(() => {
-          console.log("error");
+        .catch((err) => {
+          console.log(err);
         });
     },
 
