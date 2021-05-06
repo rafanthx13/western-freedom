@@ -6,6 +6,7 @@
           <button type="button" class="delete" @click="$emit('close')" />
         </header>
         <section class="modal-card-body">
+
           <b-field label="Id">
             <b-input
               type="number"
@@ -23,6 +24,13 @@
             </b-input>
           </b-field>
 
+          <b-field label="Type">
+            <b-select placeholder="Escolha o tipo da Tag" v-model="row.type_tag">
+                <option v-for="type in listing_type_tag" :value="type" v-bind:key="type">
+                  {{ type }}
+                </option>
+            </b-select>
+          </b-field>
 
         </section>
         <footer class="modal-card-foot">
@@ -34,44 +42,37 @@
 
 <script>
 
-import TagToPerson from "../../api/TagToPerson";
-import TagToNews from "../../api/TagToNews";
+import Tag from "../../api/Tag";
+import store from '../../store/index'
 
 export default {
-  props: ["row", "type_tag"],
+
+  props: ["row"],
+
+  created(){
+    this.listing_type_tag = store.getters.getTypeTags.dropdown
+  },
 
   methods: {
+
     editTag() {
       let tag_id = this.row.id
       let new_row = this.row
-      console.log(tag_id, new_row)
-      if(this.type_tag == 'person'){
-        TagToPerson.put(tag_id, new_row)
-          .then(() => {
-            console.log('DEU TUDO CERTO')
-            this.$emit('isDeleted', new_row)
-            this.$emit('close')
-          })
-          .catch(() => {
-            console.log("DEU TUDO ERRADAO");
-            this.$emit('isDeleted', false)
-            this.$emit('close')
-          });
-      } else {
-        TagToNews.put(tag_id, new_row)
-          .then(() => {
-            console.log('DEU TUDO CERTO')
-            this.$emit('isDeleted', new_row)
-            this.$emit('close')
-          })
-          .catch(() => {
-            console.log("DEU TUDO ERRADAO");
-            this.$emit('isDeleted', false)
-            this.$emit('close')
-          });
-      }
+      Tag.put(tag_id, new_row)
+        .then(() => {
+          console.log('DEU TUDO CERTO')
+          this.$emit('isDeleted', new_row)
+          this.$emit('close')
+        })
+        .catch(() => {
+          console.log("DEU TUDO ERRADAO");
+          this.$emit('isDeleted', false)
+          this.$emit('close')
+        });
     }
+
   },
+
 };
 </script>
 

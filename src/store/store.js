@@ -32,6 +32,12 @@ const routes = {
         delete: URL + '/tags_to_person/',
         getAll: URL + '/tags_to_person',
       },
+      tags: {
+        post: URL + '/tags',
+        put: URL + '/tags/',
+        delete: URL + '/tags/',
+        getAll: URL + '/tags',
+      },
       tags_to_news: {
         post: URL + '/tags_to_news',
         put: URL + '/tags_to_news/',
@@ -67,14 +73,11 @@ const routes = {
       dropdown: {
         'New Person': '/new-person',
         'List Person': '/list-person',
-        'New Tag Person': '/new-tag/person',
-        'New Tag News': '/new-tag/news',
-        'List Tag Person': '/list-tag/person',
-        'List Tag News': '/list-tag/news',
         'Profile Person': '/profile-person',
         'Create News': '/create-news',
         'Edit Person': '/edit-person',
-        'List News': 'list-news',
+        'List News': '/list-news',
+        'List Tag': '/list-tag',
       }
     },
     mutations: {},
@@ -87,4 +90,18 @@ const routes = {
 
   };
 
-  export default { routes, navbar };
+  const listing_type_tags = {
+    state: {
+      dropdown: ['person', 'news']
+    },
+    mutations: {},
+    actions: {},
+    getters: {
+      getTypeTags(state) {
+        return state;
+      }
+    }
+
+  };
+
+  export default { routes, navbar, listing_type_tags };

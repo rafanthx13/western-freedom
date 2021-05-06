@@ -1,14 +1,23 @@
 <template>
   <div class="container">
-    <h2>{{ type_tag }}</h2>
+    <div class="columns column my-5 mx-5">
+      <h2>Listar Tags</h2>
+      <b-button class="is-primary" @click="modalCreateTag()">Adicionar Tag</b-button>
+    </div>
+
     <div class="box mx-5 my-5">
       <b-table :data="tags" :striped="true">
+
          <b-table-column field="id" label="ID" width="40" numeric v-slot="props">
           {{ props.row.id }}
         </b-table-column>
 
-        <b-table-column field="name" label="Name" v-slot="props">
+        <b-table-column field="name" label="Name" centered v-slot="props">
           {{ props.row.name }}
+        </b-table-column>
+
+        <b-table-column field="type_tag" label="Tipo de Tag" centered v-slot="props">
+          {{ props.row.type_tag }}
         </b-table-column>
 
         <b-table-column field="id" label="Edit" width="40" centered v-slot="props">
@@ -22,16 +31,18 @@
             <b-icon pack="fas" icon="trash"> </b-icon>
           </b-button>
         </b-table-column>
+
       </b-table>
     </div>
   </div>
 </template>
 
 <script>
-import TagToNews from "../../api/TagToNews";
-import TagToPerson from "../../api/TagToPerson";
+
+import Tag from "../../api/Tag";
 import DeleteTagModal from '../../components/modals/DeleteTagModal'
 import EditTagModal from '../../components/modals/EditTagModal'
+import CreateTagModal from '../../components/modals/CreateTagModal'
 
 export default {
 
@@ -46,30 +57,37 @@ export default {
     };
   },
 
-
   created() {
-    if (this.type_tag == "person") {
-      TagToPerson.getAll()
-        .then((result) => {
-          this.tags = result.data;
-        })
-        .catch(() => {
-          console.log("error");
-        });
-    } else {
-      TagToNews.getAll()
-        .then((result) => {
-          this.tags = result.data;
-        })
-        .catch(() => {
-          console.log("error");
-        });
-    }
+    Tag.getAll()
+      .then((result) => {
+        this.tags = result.data;
+      })
+      .catch(() => {
+        console.log("error");
+      });
   },
 
-
-
   methods: {
+
+    modalCreateTag() {
+      this.$buefy.modal.open({
+        component: CreateTagModal,
+        parent: this,
+        hasModalCard: true,
+        customClass: "custom-class custom-class-2",
+        trapFocus: true,
+        events: {
+          'isCreated': (new_row) => {
+            if(new_row){
+              console.log('foi criado', new_row)
+              this.tags.push(new_row)
+            } else {
+              console.log('foi deletado')
+            }
+          }
+        }
+      })
+    },
 
     handleDelete(row) {
       this.$buefy.modal.open({

@@ -112,6 +112,20 @@
       "id": 12
     }
   ],
+  "tags": [
+    {
+      "id": 1,
+      "name": "PSL"
+    },
+    {
+      "name": "Ideologo",
+      "id": 2
+    },
+    {
+      "name": "Esquerdista",
+      "id": 3
+    }
+  ],
   "tags_to_person": [
     {
       "id": 1,

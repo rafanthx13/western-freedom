@@ -42,16 +42,20 @@ FIXME:
 + Listas, se troca de news para person, nao carrega [x] [resolvido no router-view]
 
 TODO:
-+ BD: Perosn social_media
++ BD: Adicionar social_media
 
 ### 03.05.2021 - Segunda-Feira -TODO
 
-+ Refatorar de 2 tabelas de ag para uma só com o type.
-+ Gerenciar deletaçao de tag/enidade para suas respectivas entidades/tags
-  + Ao deletar usuário, deletar a associaçâo das notícias. Remover a associaçâo de ID
+ESTRUTURA DO BANCO
++ Como há poucas tags e provavelmente pouca coisa, vai ser um bd no NoSQL mesmo, afinal, nem há tanta TAG
++   - VAI REPETIR MAS É POUCA COISA
+
+TOODO
++ [X] Refatorar de 2 tabelas de tags para uma só, adicionando type para diferencia-las.
+  - [X] Botão adicionar na parte de listagem COMO MODAL
 + Feat: Por em todo lugar as notificaçêos e fazer seu template no mixin
 + Em CreateNews, adicionar tag como pessoa para já associar
-+ Na parte de adicionar notícias, refazer ela para poder editar/adicionar/deletar as noiticias relacionadas a uma pessoa atraves de put. O checkalbe deve habilitar tirar noiticia e adicionar noticia
++ Na parte de adicionar notícias, refazer ela para poder editar/adicionar/deletar as noiticias relacionadas a uma pessoa atraves de put. O checkable deve habilitar tirar noiticia e adicionar noticia
 + Loading nas coisas que usam AJAX
 + Editar pessoa/notícia será a mesma de criação
 + Usar somente mdi nos icones (mdi) lembre-se que depende de chamar o css do cdn no index.html
@@ -65,3 +69,5 @@ TODO:
 + Por o tpitulo da página no NavBar (na ViewPerson, vai economzar espaço)
   - Por complete_name nas pessoas, para sabermos sua descendencia
 + Em ProfileView gerar a idade da pessoa dinamicamente
++ + Gerenciar deletaçao de tag/entidade para suas respectivas entidades/tags
+  + Ao deletar usuário, deletar a associaçâo das notícias. Remover a associaçâo de ID
