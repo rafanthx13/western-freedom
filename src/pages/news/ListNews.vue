@@ -61,7 +61,7 @@
       </b-table>
     </div>
 
-     <b-loading is-full-page v-model="isLoading" :can-cancel="true"></b-loading>
+    <b-loading is-full-page v-model="isLoading" :can-cancel="true"></b-loading>
 
   </div>
 </template>
@@ -77,20 +77,20 @@ import DeleteNewsModal from '../../components/modals/DeleteNewsModal'
     data() {
       return {
         news: [],
-        isLoading: false
+        isLoading: false,
       }
     },
 
     created() {
       this.isLoading = true
-        News.getAll()
-          .then((result) => {
-            this.news = result.data;
-            this.isLoading = false
-          })
-          .catch(() => {
-            console.log("error");
-          });
+      News.getAll()
+        .then((result) => {
+          this.news = result.data;
+          this.isLoading = false
+        })
+        .catch(() => {
+          console.log("error");
+        });
     },
 
     methods: {

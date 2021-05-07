@@ -40,6 +40,7 @@
       </b-table>
     </div>
 
+    <b-loading is-full-page v-model="isLoading" :can-cancel="true"></b-loading>
 
   </div>
 </template>
@@ -54,9 +55,11 @@ export default {
   mixins: [notificationMixin],
 
   created() {
+    this.isLoading = true
     Person.getAll()
       .then((result) => {
         this.persons = result.data;
+        this.isLoading = false
       })
       .catch(() => {
         this.notify_error('Erro ao buscar pessoas')
@@ -66,7 +69,7 @@ export default {
   data() {
     return {
       persons: [],
-      isComponentModalActive: false,
+      isLoading: false
     };
   },
 

@@ -101,6 +101,7 @@
           </form>
         </ValidationObserver>
       </section>
+
     </div>
   </div>
 </template>
@@ -150,7 +151,7 @@ export default {
         person_tags: [],
       },
       filteredTags: [],
-
+    
       all_person_tags: [],
       is_create: true
     };

@@ -34,6 +34,9 @@
 
       </b-table>
     </div>
+
+    <b-loading is-full-page v-model="isLoading" :can-cancel="true"></b-loading>
+
   </div>
 </template>
 
@@ -51,19 +54,17 @@ export default {
 
    data() {
     return {
-      type_tag: this.$route.params.type_tag,
       tags: [],
-      columns: [
-        { field: "id", label: "ID", width: 40 },
-        { field: "name", label: "Nome", centered: true },
-      ],
+      isLoading: false
     };
   },
 
   created() {
+    this.isLoading = true
     Tag.getAll()
       .then((result) => {
         this.tags = result.data;
+        this.isLoading = false
       })
       .catch(() => {
         this.notify_error("Erro ao buscar Tags");
