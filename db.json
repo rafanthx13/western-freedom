@@ -201,11 +201,6 @@
       "type_tag": "news"
     },
     {
-      "name": "agua",
-      "type_tag": "person",
-      "id": 4
-    },
-    {
       "name": "TagsNews1",
       "type_tag": "news",
       "id": 5
@@ -214,206 +209,14 @@
       "name": "TagPerson1",
       "type_tag": "person",
       "id": 6
+    },
+    {
+      "name": "alguma coisa",
+      "type_tag": "person",
+      "id": 7
     }
-  ],
-  "tags_to_person": [
-    {
-      "id": 1,
-      "name": "PSL"
-    },
-    {
-      "name": "Ideologo",
-      "id": 2
-    },
-    {
-      "name": "Esquerdista",
-      "id": 3
-    },
-    {
-      "name": "Revolucionario",
-      "id": 4
-    }
-  ],
-  "tags_to_news": [
-    {
-      "id": 1,
-      "name": "TagNews1"
-    },
-    {
-      "name": "TagNews2",
-      "type_tag": "news",
-      "id": 2
-    },
-    {
-      "name": "TagNews3",
-      "type_tag": "news",
-      "id": 3
-    },
-    {
-      "name": "TagNews4",
-      "type_tag": "news",
-      "id": 4
-    }
-  ],
-  "person_tag": [
-    {
-      "id": 1,
-      "id_person": 1,
-      "id_tag_person": 1
-    }
-  ],
-  "news_tag": [
-    {
-      "id": 1,
-      "id_news": 1,
-      "id_tag_news": 1
-    }
-  ],
-  "tags_x_person": [
-    {
-      "id": 1,
-      "id_tag_person": 4,
-      "id_person": 9
-    },
-    [
-      {
-        "id_tag_person": 1,
-        "id_person": 4
-      }
-    ],
-    [
-      {
-        "id_tag_person": 1,
-        "id_person": 5
-      },
-      {
-        "id_tag_person": 2,
-        "id_person": 5
-      },
-      {
-        "id_tag_person": 4,
-        "id_person": 5
-      }
-    ],
-    [
-      {
-        "id_tag_person": 1,
-        "id_person": 6
-      },
-      {
-        "id_tag_person": 2,
-        "id_person": 6
-      },
-      {
-        "id_tag_person": 4,
-        "id_person": 6
-      }
-    ],
-    [
-      {
-        "id_tag_person": 1,
-        "id_person": 4
-      }
-    ],
-    [
-      {
-        "id_tag_person": 1,
-        "id_person": 5
-      }
-    ],
-    [
-      {
-        "id_tag_person": 1,
-        "id_person": 6
-      }
-    ],
-    [
-      {
-        "id_tag_person": 1,
-        "id_person": 7
-      }
-    ],
-    [
-      {
-        "id_tag_person": 3,
-        "id_person": 5
-      }
-    ],
-    [
-      {
-        "id_tag_person": 3,
-        "id_person": 6
-      }
-    ],
-    [],
-    [
-      {
-        "id_tag_person": 3,
-        "id_person": 8
-      }
-    ],
-    [],
-    [
-      {
-        "id_tag_person": 1,
-        "id_person": 10
-      }
-    ],
-    [
-      {
-        "id_tag_person": 2,
-        "id_person": 10
-      }
-    ],
-    [
-      {
-        "id_tag_person": 3,
-        "id_person": 9
-      }
-    ],
-    [
-      {
-        "id_tag_person": 1,
-        "id_person": 10
-      }
-    ]
   ],
   "news_x_person": [
-    {
-      "id_news": 1,
-      "id_person": 8,
-      "id": 1
-    },
-    {
-      "id_news": 2,
-      "id_person": 8,
-      "id": 2
-    },
-    {
-      "id_news": 3,
-      "id_person": 8,
-      "id": 3
-    },
-    {
-      "id_news": 4,
-      "id_person": 8,
-      "id": 4
-    },
-    {
-      "id_news": 5,
-      "id_person": 8,
-      "id": 5
-    },
-    {
-      "id_news": 6,
-      "id_person": 8,
-      "id": 6
-    },
-    {
-      "id_news": 7,
-      "id_person": 8,
-      "id": 7
-    },
     {
       "id_news": 8,
       "id_person": 8,
@@ -450,9 +253,19 @@
       "id": 14
     },
     {
-      "id_news": 14,
-      "id_person": 10,
+      "id_news": 9,
+      "id_person": 8,
       "id": 15
+    },
+    {
+      "id_news": 11,
+      "id_person": 8,
+      "id": 16
+    },
+    {
+      "id_news": 12,
+      "id_person": 8,
+      "id": 17
     }
   ]
 }

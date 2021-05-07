@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="columns column my-5 mx-5">
-      <h2>Listar Tags</h2>
+      <h2 class="title is-4 mr-6">Listar Tags</h2>
       <b-button class="is-primary" @click="modalCreateTag()">Adicionar Tag</b-button>
     </div>
 

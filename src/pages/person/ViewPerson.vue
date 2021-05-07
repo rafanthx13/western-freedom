@@ -32,6 +32,19 @@
             <p>{{ person.birth_date }} - {{ age }} anos</p>
           </b-field>
         </div>
+
+        <div>
+          <b-taglist>
+            <b-tag
+              type="is-info"
+              v-for="(value, key) in person.person_tags"
+              v-bind:key="key"
+            >
+              {{ value.name }}
+            </b-tag>
+          </b-taglist>
+        </div>
+
         {{ this.start_date }}
         <b-button
           label="Adicionar Notícias"
@@ -39,6 +52,11 @@
           @click="goToAddNewsToPerson()"
         />
         <br /><br />
+        <b-button
+          label="Deletar Notícias"
+          type="is-primary"
+          @click="goToADeleteNewsToPerson()"
+        />
       </div>
 
       <!-- Column 2 : News -->
@@ -69,6 +87,7 @@ import moment from "moment";
 import NewsTile from "../../components/NewsTile";
 
 export default {
+  
   components: {
     NewsTile,
   },
@@ -82,6 +101,7 @@ export default {
         description: "",
         birth_date: null,
         position: "",
+        person_tags: [],
       },
       start_date: '',
       age: 0,
@@ -103,6 +123,7 @@ export default {
         });
     } else {
       this.person = this.$route.params.model;
+      this.age = moment().diff( moment(this.person.birth_date, "MM-DD-YYYY"), 'years');
       this.initializeViewPerson()
     }
 
@@ -140,12 +161,34 @@ export default {
         });
     },
 
+    /*
+// Verificar se veio de ViewPerson ou URL direto
+    if (this.$route.params.model) {
+      this.person = this.$route.params.model;
+
+    }
+    if(this.isAddNews){
+      // Selecionar Notícias que a pessoa não tem para ADD
+
+    } else {
+      // Selecionar Notícias que a pessoa tem para DELETE
+
+    }
+    */
+
     goToAddNewsToPerson() {
       this.$router.push({
         name: "AddNewsToPerson",
-        params: { model: this.person, id: this.person.id },
+        params: { model: this.person, id: this.person.id, news: this.news, isAddNews: true },
       });
     },
+
+    goToADeleteNewsToPerson(){
+      this.$router.push({
+        name: "DeleteNewsToPerson",
+        params: { model: this.person, id: this.person.id, news: this.news, isAddNews: false },
+      });
+    }
   },
 };
 </script>

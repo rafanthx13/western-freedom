@@ -70,23 +70,22 @@ TO
 + Tags: Filtrar tags de person e tag de news em cada parte que ela é chamda (nao fiz isso ainda) / e tirar outras tags [x]
 + Editar pessoa [x]/notícia[x] será a mesma de criação
 
+06.05.2021
++ EM SUMA, ASSOCIAR NEWS <=> PERSON, que nâo será como Tag, mas sim por tabela Aux [X]
+  + 1. Ao criar uma notícia, adicionar a pessoa na forma de tag (adicionando em news_x_person) [x]
+  + 2. Gerenciar Notícias de uma pessoa [X]
+    + 2.1 Adicionar notícias (uma tela) [X]
+    + 2.2 Deletar Notícia (outra tela) [X]
+    + 2.3 Ambas as telas sâo checlks, mas uma tem menos dados do que a outra [X]
++ Corrigir geraçâo de 'age' [x]
++ Adicionar Tags em ViewPerson [x]
 
 TODO-NEXT
-EM SUMA, ASSOCIAR NEWS <=> PERSON, que nâo será como Tag, mas sim por tabela Aux
-+ 1. Ao criar uma notícia, adicionar a pessoa na forma de tag (adicionando em news_x_person) [x]
-+ 2. Gerenciar Notícias de uma pesso
-  + 2.1 Adicionar notícias (uma tela)
-  + 2.2 Deletar Notícia (outra tela)
-  + 2.3 Ambas as telas sâo checlks, mas uma tem menos dados do que a outra
-
-TELA HOME
-+ de personaliade com card e noticias lembrando bel-falcon, sistema de grid
-
-GERENCIA DE DELETAÇÃO
-+ Ao deletar usuário, deletar a associaçâo das notícias. Remover a associaçâo de ID
-+ Gerenciar deletaçao de tag com (person/news) para suas respectivas entidades/tags [OBS: SERÁ QUE HAVERÁ TAGS DELETADAS?]
-
-
++ GERENCIA DE DELETAÇÃO
+  + Ao deletar usuário, deletar a associaçâo das notícias. Remover a associaçâo de ID
+  + Gerenciar deletaçao de tag com (person/news) para suas respectivas entidades/tags [OBS: SERÁ QUE HAVERÁ TAGS DELETADAS?]
++ TELA HOME GRID LIST
++ Colcoar validaçâo corretamente (required)
 
 TODO-FUTURE
 + Por complete_name nas pessoas, para sabermos sua descendencia

@@ -13,6 +13,17 @@ export default class {
     return http.get(news.getOne + id);
   }
 
+  static getAllExceptList(listId){
+    // console.log('getAllExceptList : listId', listId)
+    let acc = ''
+    for (let aid of listId){
+      acc += 'id_ne=' + aid + '&' // '_ne para excluir
+    }
+    acc = acc.slice(0,-1) // remove last &
+    // console.log('acc', acc)
+    return http.get(news.getlist + '?' + acc);
+  }
+
   static getlist(listId){
     let acc = ''
     for (let aid of listId){
@@ -21,6 +32,7 @@ export default class {
     acc = acc.slice(0,-1) // remove last &
     return http.get(news.getlist + '?' + acc);
   }
+
 
   static post(body){
     return http.post(news.post, body);

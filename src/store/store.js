@@ -73,9 +73,7 @@ const routes = {
       dropdown: {
         'New Person': '/new-person',
         'List Person': '/list-person',
-        'Profile Person': '/profile-person',
         'Create News': '/create-news',
-        'Edit Person': '/edit-person',
         'List News': '/list-news',
         'List Tag': '/list-tag',
         'About Me': '/about-me'
