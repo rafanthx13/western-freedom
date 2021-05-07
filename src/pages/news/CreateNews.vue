@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="box mx-5 my-3">
+      <h1><h1 class="title is-4">{{ is_create ? 'Insira uma nova Notícia ' : 'Editar Notícia'}}</h1></h1>
       <section>
         <ValidationObserver ref="observer">
           <form>
@@ -106,7 +107,7 @@
 
 <script>
 import News from "../../api/News";
-import TagToNews from "../../api/TagToNews";
+import Tag from "../../api/Tag";
 import moment from "moment";
 
 import { required, max } from "vee-validate/dist/rules";
@@ -137,18 +138,6 @@ export default {
 
   mixins: [notificationMixin],
 
-  created() {
-    TagToNews.getAll()
-      .then((result) => {
-        this.all_news_tags = result.data;
-      })
-      .catch((err) => {
-        console.log(err);
-        this.notify_error('Erro ao buscar Tags')
-
-      });
-  },
-
   data() {
     return {
       news: {
@@ -160,10 +149,27 @@ export default {
         news_tag: [], // tags finais para emviar completas
         date: new Date(),
       },
+      is_create: true,
       isSelectOnly: false,
       all_news_tags: [],
       filteredTags: [],
     };
+  },
+
+  created() {
+    if(this.$route.params.news){
+      this.news = this.$route.params.news
+      this.news.date = new Date(this.news.date)
+      this.is_create = false
+    }
+    Tag.getNewsTags()
+      .then((result) => {
+        this.all_news_tags = result.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        this.notify_error('Erro ao buscar Tags de Notícias')
+      });
   },
 
   methods: {
@@ -177,18 +183,13 @@ export default {
 
     submit() {
       this.$refs.observer.validate().then((result) => {
-          if (result) {
-            const sendNews = JSON.parse(JSON.stringify(this.news));
-            console.log("Data Recebida antes do MOMENT", sendNews.date);
-            sendNews.date = moment(new Date(sendNews.date), "DD/MM/YYYY").format(
-              "MM-DD-YYYY"
-            );
-            console.log("Data Após o Moment", sendNews.date);
-            console.log('Dado a ser enviado no POST CreateNews', sendNews);
+        if (result) {
+          const sendNews = JSON.parse(JSON.stringify(this.news));
+          sendNews.date = moment(sendNews.date).format('MM-DD-YYYY')
+          if(this.is_create){
             News.post(sendNews)
               .then(() => {
-                console.log("Success");
-                this.notify_success("Notícias criada com sucesso")
+                this.notify_success("Notícia criada com sucesso")
                 this.clear();
               })
               .catch((err) => {
@@ -196,13 +197,24 @@ export default {
                 this.notify_error('Erro ao criar Notícias')
               });
           } else {
-            this.notify_error("Erro na validação dos dados");
+            News.put(sendNews)
+              .then(() => {
+                this.notify_success("Notícia editada com sucesso")
+                this.clear();
+              })
+              .catch((err) => {
+                console.log(err);
+                this.notify_error('Erro ao editar Notícias')
+              });
           }
-        })
-        .catch((err) => {
-          console.error(err);
-          this.notify_error("Erro na validação");
-        });
+        } else {
+          this.notify_error("Erro na validação dos dados");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        this.notify_error("Erro na validação");
+      });
     },
 
     clear() {

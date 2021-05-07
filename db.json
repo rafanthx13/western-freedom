@@ -28,6 +28,26 @@
       "birth_date": "03-15-1986",
       "position": "Deputado Estadual de São Paulo",
       "id": 10
+    },
+    {
+      "name": "Renan Santos",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Renan.png/200px-Renan.png",
+      "description": "MBL Membro",
+      "birth_date": "02-16-1984",
+      "position": "Faz nada",
+      "id": 11,
+      "person_tags": [
+        {
+          "name": "agua",
+          "type_tag": "person",
+          "id": 4
+        },
+        {
+          "name": "TagPerson1",
+          "type_tag": "person",
+          "id": 6
+        }
+      ]
     }
   ],
   "news": [
@@ -118,6 +138,28 @@
       "date": "Invalid date",
       "source": "IstoE",
       "id": 12
+    },
+    {
+      "title": "Danilo Gentili recebe diagnóstico de covid:",
+      "url": "https://www.acidadeon.com/viu-essa/NOT,0,0,1611382,Danilo-Gentili-recebe-diagnostico-de-Covid-Conto-com-as-oracoes-de-vocescx_testId26cx_testVariantcx_1cx_artPos1.aspx",
+      "subtitle": "Conto com as orações de vocês",
+      "description": "O apresentador Danilo Gentili, 41, afirmou na noite desta segunda (3), por meio de suas redes sociais, que recebeu diagnóstico de covid-19. \"Eu me cuido. Sem ser o trabalho, não saio para lugar nenhum, até mesmo por preocupação com a minha mãe. Mesmo assim testei positivo para covid hoje [segunda]\", escreveu ele no Twitter.",
+      "comment": "Danilo pegou COVID",
+      "news_tag": [
+        {
+          "name": "TagsNews1",
+          "type_tag": "news",
+          "id": 5
+        },
+        {
+          "name": "Esquerdista",
+          "id": 3,
+          "type_tag": "news"
+        }
+      ],
+      "date": "05-04-2021",
+      "source": "A cidade On",
+      "id": 13
     }
   ],
   "tags": [
@@ -140,6 +182,16 @@
       "name": "agua",
       "type_tag": "person",
       "id": 4
+    },
+    {
+      "name": "TagsNews1",
+      "type_tag": "news",
+      "id": 5
+    },
+    {
+      "name": "TagPerson1",
+      "type_tag": "person",
+      "id": 6
     }
   ],
   "tags_to_person": [
@@ -359,6 +411,16 @@
       "id_news": 12,
       "id_person": 9,
       "id": 11
+    },
+    {
+      "id_news": 10,
+      "id_person": 1,
+      "id": 12
+    },
+    {
+      "id_news": 11,
+      "id_person": 1,
+      "id": 13
     }
   ]
 }

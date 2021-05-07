@@ -18,7 +18,7 @@ export default class {
   }
 
   static put(body){
-    return http.put(person.put + body.person_id, body);
+    return http.put(person.put + body.id, body);
   }
 
   static delete(id){

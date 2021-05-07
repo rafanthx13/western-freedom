@@ -59,7 +59,7 @@
 <script>
 import News from "../../api/News";
 import Person from "../../api/Person";
-import NewsXPerson from "../../api/NewsXPerson";
+import NewsXPerson from "../../api/Person_x_News";
 
 export default {
 

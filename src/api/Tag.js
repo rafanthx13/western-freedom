@@ -9,6 +9,14 @@ export default class {
     return http.get(tags.getAll);
   }
 
+  static getPersonTags(){
+    return http.get(tags.getAll + '?type_tag=person')
+  }
+
+  static getNewsTags(){
+    return http.get(tags.getAll + '?type_tag=news')
+  }
+
   static post(body){
     return http.post(tags.post, body);
   }

@@ -45,10 +45,3 @@ tags_to_news
 + id_person
 
 
-import notificationMixin from './../../mixins/notifications'
-
-mixins: [notificationMixin],
-
-this.notify_success("Tag adicionada com sucesso")
-
-this.notify_error('Erro ao criar Tag')

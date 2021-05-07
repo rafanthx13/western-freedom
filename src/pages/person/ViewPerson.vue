@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import NewsXPerson from "../../api/NewsXPerson";
+import Person_x_News from "../../api/Person_x_News";
 import News from "../../api/News";
 import Person from "../../api/Person";
 import moment from "moment";
@@ -119,7 +119,7 @@ export default {
         "DD/MM/YYYY"
       ); // recebe no format DD-MM-YYYY e converte para DD/MM/YYYY
       let listNews = [];
-      NewsXPerson.getAllfromId(this.person.id)
+      Person_x_News.getAllfromId(this.person.id)
         .then((result) => {
           listNews = result.data.map((el) => el.id_news)
           if(listNews.length != 0){

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="box mx-6 my-3">
-      <h1 class="title is-4">Insira uma nova Pessoa</h1>
+      <h1 class="title is-4">{{ is_create ? 'Insira uma nova Pessoa ' : 'Editar pessoa'}}</h1>
       <section>
         <ValidationObserver ref="observer">
           <form>
@@ -81,7 +81,7 @@
 
             <b-field label="Insira Tags para a Pessoa">
               <b-taginput
-                v-model="person_tags"
+                v-model="person.person_tags"
                 :data="filteredTags"
                 autocomplete
                 :allow-new="false"
@@ -107,8 +107,8 @@
 
 <script>
 import Person from "../../api/Person";
-import TagToPerson from "../../api/TagToPerson";
-import TagXPerson from "../../api/TagXPerson";
+import Tag from "../../api/Tag";
+// import TagXPerson from "../../api/TagXPerson";
 
 import notificationMixin from './../../mixins/notifications'
 import moment from 'moment'
@@ -147,15 +147,22 @@ export default {
         description: "",
         birth_date: new Date(),
         position: "",
+        person_tags: [],
       },
       filteredTags: [],
-      person_tags: [],
+
       all_person_tags: [],
+      is_create: true
     };
   },
 
   created() {
-    TagToPerson.getAll()
+    if(this.$route.params.model){
+      this.person = this.$route.params.model
+      this.person.birth_date = new Date(this.person.birth_date)
+      this.is_create = false
+    }
+    Tag.getPersonTags()
       .then((result) => {
         this.all_person_tags = result.data;
       })
@@ -168,30 +175,29 @@ export default {
     submit() {
       this.$refs.observer.validate().then((result) => {
         if (result) {
-          const sendPerson = JSON.parse(JSON.stringify(this.person));
-          sendPerson.birth_date = moment(sendPerson.birth_date).format('MM-DD-YYYY');
-          let person_id = null
-          Person.post(sendPerson)
-            .then( (result) => {
-              person_id = result.data.id
-              let mapping = this.person_tags.map( (el) => {
-                return { "id_tag_person": el.id, "id_person": person_id }
-              })
-              console.log(mapping)
-              // TODO no Back, deverá receber uma lista e fazer vários posts
-              TagXPerson.post(mapping)
-                .then(() => {
-                  this.notify_success("Pessoa criada com sucesso");
-                })
-                .catch((err) => {
-                  console.log(err);
-                  this.notify_error("Erro ao criar Pessoa");
-                });
+          // Necessario pois no componente datepicker nao pode receber outro valor que nao seja um new Date()
+          const sendPerson = JSON.parse(JSON.stringify(this.person))
+          sendPerson.birth_date = moment(sendPerson.birth_date).format('MM-DD-YYYY')
+          if(this.is_create){
+            Person.post(sendPerson)
+            .then( () => {
+              this.notify_success('Sucesso no cadastro de pessoa');
             })
             .catch((err) => {
               console.log(err);
-              this.notify_error();
+              this.notify_error('Error');
             });
+          } else {
+            Person.put(sendPerson)
+            .then( () => {
+              this.notify_success('Sucesso ao editar pessoa');
+            })
+            .catch((err) => {
+              console.log(err);
+              this.notify_error('Error');
+            });
+          }
+
         } else {
           this.notify_error("Dados invalidos");
         }
@@ -207,26 +213,6 @@ export default {
       this.$refs.observer.reset();
     },
 
-    // success() {
-    //   this.$buefy.notification.open({
-    //     message: "Something happened correctly!",
-    //     type: "is-success",
-    //   });
-    // },
-
-    // danger() {
-    //   const notif = this.$buefy.notification.open({
-    //     duration: 5000,
-    //     message: `Something's not good, also I'm on <b>bottom</b>`,
-    //     position: "is-bottom-right",
-    //     type: "is-danger",
-    //     hasIcon: true,
-    //   });
-    //   notif.$on("close", () => {
-    //     this.$buefy.notification.open("Custom notification closed!");
-    //   });
-    // },
-
     getFilteredTags(text) {
       this.filteredTags = this.all_person_tags.filter((option) => {
         return (
@@ -234,6 +220,7 @@ export default {
         );
       });
     },
+
   },
 };
 </script>

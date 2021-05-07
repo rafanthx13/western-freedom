@@ -67,15 +67,27 @@ TO
 + Em ProfileView gerar a idade da pessoa dinamicamente [x]
 + Fazer página de About [x] e de Error [x]
 + css global [x] [global.css]
++ Tags: Filtrar tags de person e tag de news em cada parte que ela é chamda (nao fiz isso ainda) / e tirar outras tags [x]
++ Editar pessoa [x]/notícia[x] será a mesma de criação
 
 
-+ Tags: Filtrar tags de person e tag de news em cada parte que ela é chamda (nao fiz isso ainda) / e tirar outras tags
-+ Na parte de adicionar notícias, refazer ela para poder editar/adicionar/deletar as noiticias relacionadas a uma pessoa atraves de put. O checkable deve habilitar tirar noiticia e adicionar noticia
-+ Editar pessoa/notícia será a mesma de criação
-+ Criar tela Home de personaliade com card e noticias lembrando bel-falcon, sistema de grid
+TODO-NEXT
+EM SUMA, ASSOCIAR NEWS <=> PERSON, que nâo será como Tag, mas sim por tabela Aux
++ 1. Ao criar uma notícia, adicionar a pessoa na forma de tag (adicionando em news_x_person)
++ 2. Gerenciar Notícias de uma pesso
+  + 2.1 Adicionar notícias (uma tela)
+  + 2.2 Deletar Notícia (outra tela)
+  + 2.3 Ambas as telas sâo checlks, mas uma tem menos dados do que a outra
+
+TELA HOME
++ de personaliade com card e noticias lembrando bel-falcon, sistema de grid
+
+GERENCIA DE DELETAÇÃO
++ Ao deletar usuário, deletar a associaçâo das notícias. Remover a associaçâo de ID
++ Gerenciar deletaçao de tag com (person/news) para suas respectivas entidades/tags [OBS: SERÁ QUE HAVERÁ TAGS DELETADAS?]
+
+
+
+TODO-FUTURE
 + Por complete_name nas pessoas, para sabermos sua descendencia
-+ Por nas new as pessoas correpsondentes e links para elas
-+ + Gerenciar deletaçao de tag/entidade para suas respectivas entidades/tags
-  + Ao deletar usuário, deletar a associaçâo das notícias. Remover a associaçâo de ID
-+ + Em CreateNews, adicionar tag como pessoa para já associar
 + Quadro de amigos e inimigos

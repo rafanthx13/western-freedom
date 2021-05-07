@@ -37,9 +37,12 @@
             <div class="media-content">
               <div class="content">
                 <p>URL: <a :href="props.row.url">{{ props.row.url }}</a></p>
+                <p>Fonte: {{ props.row.source }}</p>
                 <p>Descrição: {{ props.row.description }}</p>
                 <p>Comentário: {{ props.row.comment }}</p>
-                <p class="is-flex-direction-row" style="justify-content: center !important">
+                <p>Data: {{ props.row.date }}</p>
+
+                <p class="is-flex-direction-row" style="justify-content: center !important;">
                   <b-taglist centered>
                     <b-tag
                       type="is-info"
@@ -67,7 +70,7 @@
 
 import News from "../../api/News";
 import DeleteNewsModal from '../../components/modals/DeleteNewsModal'
-import EditNewsModal from '../../components/modals/EditNewsModal'
+// import EditNewsModal from '../../components/modals/EditNewsModal'
 
   export default {
 
@@ -112,19 +115,10 @@ import EditNewsModal from '../../components/modals/EditNewsModal'
     },
 
     handleEdit(row) {
-      this.$buefy.modal.open({
-        component: EditNewsModal,
-        parent: this,
-        hasModalCard: true,
-        customClass: "custom-class custom-class-2",
-        trapFocus: true,
-        props: { row },
-        events: {
-          'isEdited': (new_row) => {
-              this.news = this.news.map(obj => this.news.find(o => o.id === obj.id) || new_row);
-            }
-          }
-        });
+      this.$router.push({
+        name: "EditNews",
+        params: { news: row }
+      });
     },
 
   }

@@ -31,7 +31,7 @@ vbase : gera scaffold
 
 Chamando uma rota
 
-````
+````javascript
  this.$router.push({
         name: "Profile",
         params: { model: model_data }
@@ -40,7 +40,7 @@ Chamando uma rota
 
 Recebendo dados da rota
 
-````
+````javascript
 this.$route.params.model
 ````
 
@@ -94,5 +94,16 @@ export default {
   method1: ......
     this.success()
 ````
+Using Notifications
 
+````vue
+import notificationMixin from './../../mixins/notifications'
+
+mixins: [notificationMixin],
+
+this.notify_success("Tag adicionada com sucesso")
+
+this.notify_error('Erro ao criar Tag')
+
+````
 

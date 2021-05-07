@@ -27,7 +27,7 @@ export default class {
   }
 
   static put(body){
-    return http.put(news.put + body.news_id, body);
+    return http.put(news.put + body.id, body);
   }
 
   static delete(id){
