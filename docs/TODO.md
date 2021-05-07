@@ -73,7 +73,7 @@ TO
 
 TODO-NEXT
 EM SUMA, ASSOCIAR NEWS <=> PERSON, que nâo será como Tag, mas sim por tabela Aux
-+ 1. Ao criar uma notícia, adicionar a pessoa na forma de tag (adicionando em news_x_person)
++ 1. Ao criar uma notícia, adicionar a pessoa na forma de tag (adicionando em news_x_person) [x]
 + 2. Gerenciar Notícias de uma pesso
   + 2.1 Adicionar notícias (uma tela)
   + 2.2 Deletar Notícia (outra tela)

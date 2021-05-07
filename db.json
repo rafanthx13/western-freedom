@@ -160,6 +160,28 @@
       "date": "05-04-2021",
       "source": "A cidade On",
       "id": 13
+    },
+    {
+      "title": "https://g1.globo.com/mundo/noticia/2021/05/07/quatro-policiais-sao-acusados-na-justica-federal-por-morte-de-george-floyd.ghtml",
+      "url": "https://g1.globo.com/mundo/noticia/2021/05/07/quatro-policiais-sao-acusados-na-justica-federal-por-morte-de-george-floyd.ghtml",
+      "subtitle": "https://g1.globo.com/mundo/noticia/2021/05/07/quatro-policiais-sao-acusados-na-justica-federal-por-morte-de-george-floyd.ghtml",
+      "description": "https://g1.globo.com/mundo/noticia/2021/05/07/quatro-policiais-sao-acusados-na-justica-federal-por-morte-de-george-floyd.ghtml",
+      "comment": "https://g1.globo.com/mundo/noticia/2021/05/07/quatro-policiais-sao-acusados-na-justica-federal-por-morte-de-george-floyd.ghtml",
+      "news_tag": [
+        {
+          "name": "Esquerdista",
+          "id": 3,
+          "type_tag": "news"
+        },
+        {
+          "name": "TagsNews1",
+          "type_tag": "news",
+          "id": 5
+        }
+      ],
+      "date": "05-05-2021",
+      "source": "https://g1.globo.com/mundo/noticia/2021/05/07/quatro-policiais-sao-acusados-na-justica-federal-por-morte-de-george-floyd.ghtml",
+      "id": 14
     }
   ],
   "tags": [
@@ -421,6 +443,16 @@
       "id_news": 11,
       "id_person": 1,
       "id": 13
+    },
+    {
+      "id_news": 14,
+      "id_person": 8,
+      "id": 14
+    },
+    {
+      "id_news": 14,
+      "id_person": 10,
+      "id": 15
     }
   ]
 }

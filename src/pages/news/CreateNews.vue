@@ -84,6 +84,22 @@
               </b-taginput>
             </b-field>
 
+            <!-- PERSONS -->
+            <b-field label="Pessoas">
+              <b-taginput
+                v-model="associate_persons"
+                :data="filteredPersons"
+                autocomplete
+                :allow-new="false"
+                :open-on-focus="true"
+                field="name"
+                icon="label"
+                placeholder="Associe a Notícia à pessoas"
+                @typing="getFilteredPersons"
+              >
+              </b-taginput>
+            </b-field>
+
             <!-- DATE -->
             <b-field label="Selecione a data da notícia">
               <b-datepicker
@@ -108,6 +124,8 @@
 <script>
 import News from "../../api/News";
 import Tag from "../../api/Tag";
+import Person from "../../api/Person";
+import Person_x_News from "../../api/Person_x_News";
 import moment from "moment";
 
 import { required, max } from "vee-validate/dist/rules";
@@ -146,13 +164,16 @@ export default {
         subtitle: "",
         description: "",
         comment: "",
-        news_tag: [], // tags finais para emviar completas
+        news_tag: [],
         date: new Date(),
       },
+      associate_persons: [],
       is_create: true,
       isSelectOnly: false,
       all_news_tags: [],
+      all_persons: [],
       filteredTags: [],
+      filteredPersons: []
     };
   },
 
@@ -170,11 +191,28 @@ export default {
         console.log(err);
         this.notify_error('Erro ao buscar Tags de Notícias')
       });
+    Person.getAll()
+      .then((result) => {
+        this.all_persons = result.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        this.notify_error('Erro ao buscar Pessoas')
+      });
+
   },
 
   methods: {
     getFilteredTags(text) {
       this.filteredTags = this.all_news_tags.filter((option) => {
+        return (
+          option.name.toString().toLowerCase().indexOf(text.toLowerCase()) >= 0
+        );
+      });
+    },
+
+    getFilteredPersons(text) {
+      this.filteredPersons = this.all_persons.filter((option) => {
         return (
           option.name.toString().toLowerCase().indexOf(text.toLowerCase()) >= 0
         );
@@ -188,7 +226,8 @@ export default {
           sendNews.date = moment(sendNews.date).format('MM-DD-YYYY')
           if(this.is_create){
             News.post(sendNews)
-              .then(() => {
+              .then((result) => {
+                this.associate_news_to_persons(result.data, this.associate_persons)
                 this.notify_success("Notícia criada com sucesso")
                 this.clear();
               })
@@ -215,6 +254,22 @@ export default {
         console.error(err);
         this.notify_error("Erro na validação");
       });
+    },
+
+    associate_news_to_persons(news, associate_persons){
+      console.log('news sended', news, associate_persons)
+      try{
+        for (let p of associate_persons){
+          let relationate_person_to_news = { 'id_news': news.id, 'id_person': p.id}
+          Person_x_News.post(relationate_person_to_news)
+            .then((result) => {
+              this.all_persons = result.data;
+            })
+        }
+      } catch (err){
+        console.log(err)
+        this.notify_error('Erro ao associar Notícia com Pessoas')
+      }
     },
 
     clear() {
