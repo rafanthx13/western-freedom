@@ -1,7 +1,7 @@
 import firebase from "firebase/app"
 import 'firebase/firestore' // database module
 import 'firebase/auth' // auth module
-import firebaseConfig from './firebaseConfig' // SECRET KEY
+import firebaseConfig from './firebaseConfigDefault' // SECRET KEY
 
 firebase.initializeApp(firebaseConfig)
 
