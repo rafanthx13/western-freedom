@@ -1,3 +1,5 @@
+console.log(process.env.API_KEY)
+
 export default {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
