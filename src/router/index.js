@@ -28,7 +28,7 @@ let router = new VueRouter({
        { path: '/edit-news', component: CreateNews, name: 'EditNews'},
 
        { path: '/new-person', component: NewPerson },
-       { path: '/list-person', component: ListPerson },
+       { path: '/list-person', component: ListPerson, name: 'ListPerson' },
        { path: '/edit-person', component: NewPerson, name: 'EditPerson'},
        { path: '/view-person/:id', component: ViewPerson, name: 'ViewPerson'},
 

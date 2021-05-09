@@ -107,3 +107,49 @@ this.notify_error('Erro ao criar Tag')
 
 ````
 
+## Export default e sem default
+
+**Se vocÊ usa com default, nâo pode usar {}**
+
+````javascript
+export default {
+  apiKey: '',
+  authDomain: '',
+  databaseURL: '',
+  projectId: '',
+  storageBucket: '',
+  messagingSenderId: '',
+  appId: '',
+  measurementId: '',
+}
+````
+
+Chamando
+
+````javascript
+import firebaseConfig from './firebaseConfig'
+````
+**Se nao usamos o default, temos que colocar chaves para criar e para chamar**
+
+**E consequentemente não usamos default, se nao dá erro**
+
+````javascript
+export {
+  // createDate,
+  postDoc,
+  // postDocWhithCreateDate,
+  db,
+  auth,
+  newsCollection,
+  personCollection,
+  tagCollection,
+  personXTagsCollection
+}
+````
+
+Chamando
+
+````javascript
+import { personCollection, postDoc } from './../database/firebase'
+````
+

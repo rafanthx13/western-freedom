@@ -1,28 +1,25 @@
-import http from './http'
-import store from '../store';
-
-let person = store.getters.getRoutes.person;
+import { personCollection, postDoc } from './../database/firebase'
 
 export default class {
 
   static getAll(){
-    return http.get(person.getAll);
+    return personCollection.get()
   }
 
   static getOne(id){
-    return http.get(person.getOne + id);
+    return personCollection.doc(id).get()
   }
 
   static post(body){
-    return http.post(person.post, body);
+    return postDoc(personCollection, body)
   }
 
   static put(body){
-    return http.put(person.put + body.id, body);
+    return personCollection.doc(body.id).set(body)
   }
 
   static delete(id){
-    return http.delete(person.delete + id);
+    return personCollection.doc(id).delete()
   }
 
 }

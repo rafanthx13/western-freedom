@@ -147,6 +147,7 @@ extend("max", {
 });
 
 import notificationMixin from "./../../mixins/notifications";
+import fireHandler from './../../mixins/fireHandler'
 
 export default {
   components: {
@@ -154,7 +155,7 @@ export default {
     ValidationObserver,
   },
 
-  mixins: [notificationMixin],
+  mixins: [notificationMixin, fireHandler],
 
   data() {
     return {
@@ -185,7 +186,7 @@ export default {
     }
     Tag.getNewsTags()
       .then((result) => {
-        this.all_news_tags = result.data;
+        this.all_news_tags = this.getFireBaseList(result)
       })
       .catch((err) => {
         console.log(err);
@@ -193,7 +194,7 @@ export default {
       });
     Person.getAll()
       .then((result) => {
-        this.all_persons = result.data;
+        this.all_persons = this.getFireBaseList(result)
       })
       .catch((err) => {
         console.log(err);
@@ -227,7 +228,8 @@ export default {
           if(this.is_create){
             News.post(sendNews)
               .then((result) => {
-                this.associate_news_to_persons(result.data, this.associate_persons)
+                // console.log('result :>> ', result);
+                this.associate_news_to_persons(sendNews, this.associate_persons)
                 this.notify_success("Notícia criada com sucesso")
                 this.clear();
               })
@@ -239,10 +241,10 @@ export default {
             News.put(sendNews)
               .then(() => {
                 this.notify_success("Notícia editada com sucesso")
-                this.clear();
+                this.$router.push({ name: "ListNews" });
               })
               .catch((err) => {
-                console.log(err);
+                console.error(err);
                 this.notify_error('Erro ao editar Notícias')
               });
           }
@@ -262,8 +264,11 @@ export default {
         for (let p of associate_persons){
           let relationate_person_to_news = { 'id_news': news.id, 'id_person': p.id}
           Person_x_News.post(relationate_person_to_news)
-            .then((result) => {
-              this.all_persons = result.data;
+            .then(() => {
+              console.log('sucess :>> ');
+            })
+            .catch ( (err) => {
+              console.error(err);
             })
         }
       } catch (err){

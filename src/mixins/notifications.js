@@ -11,12 +11,8 @@ var notificationsMixin = {
       const notif = this.$buefy.notification.open({
         duration: 5000,
         message: message,
-        position: "is-bottom-right",
         type: "is-danger",
         hasIcon: true,
-      });
-      notif.$on("close", () => {
-        this.$buefy.notification.open("Custom notification closed!");
       });
     },
   }

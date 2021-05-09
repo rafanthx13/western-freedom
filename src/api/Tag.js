@@ -1,32 +1,29 @@
-import http from './http'
-import store from '../store';
-
-let tags = store.getters.getRoutes.tags;
+import { tagCollection, postDoc } from './../database/firebase'
 
 export default class {
 
+  static post(body){
+    return postDoc(tagCollection, body)
+  }
+
   static getAll(){
-    return http.get(tags.getAll);
+    return tagCollection.get()
   }
 
   static getPersonTags(){
-    return http.get(tags.getAll + '?type_tag=person')
+    return tagCollection.where('type_tag', '==', 'person').get()
   }
 
   static getNewsTags(){
-    return http.get(tags.getAll + '?type_tag=news')
-  }
-
-  static post(body){
-    return http.post(tags.post, body);
+    return tagCollection.where('type_tag', '==', 'news').get()
   }
 
   static put(id, body){
-    return http.put(tags.put + id, body);
+    return tagCollection.doc(id).set(body)
   }
 
   static delete(id){
-    return http.delete(tags.delete + id);
+    return tagCollection.doc(id).delete()
   }
 
 }

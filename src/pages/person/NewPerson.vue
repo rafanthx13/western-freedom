@@ -112,6 +112,7 @@ import Tag from "../../api/Tag";
 // import TagXPerson from "../../api/TagXPerson";
 
 import notificationMixin from './../../mixins/notifications'
+import fireHandler from './../../mixins/fireHandler'
 import moment from 'moment'
 
 import { required, max } from "vee-validate/dist/rules";
@@ -121,6 +122,7 @@ import {
   ValidationProvider,
   setInteractionMode,
 } from "vee-validate";
+// import router from '../../router';
 
 setInteractionMode("eager");
 extend("required", {
@@ -138,7 +140,7 @@ export default {
     ValidationObserver,
   },
 
-  mixins: [notificationMixin],
+  mixins: [notificationMixin, fireHandler],
 
   data() {
     return {
@@ -151,7 +153,7 @@ export default {
         person_tags: [],
       },
       filteredTags: [],
-    
+
       all_person_tags: [],
       is_create: true
     };
@@ -165,7 +167,7 @@ export default {
     }
     Tag.getPersonTags()
       .then((result) => {
-        this.all_person_tags = result.data;
+        this.all_person_tags = this.getFireBaseList(result);
       })
       .catch(() => {
         console.log("error");
@@ -192,6 +194,7 @@ export default {
             Person.put(sendPerson)
             .then( () => {
               this.notify_success('Sucesso ao editar pessoa');
+              this.$router.push({ name: "ListPerson" });
             })
             .catch((err) => {
               console.log(err);

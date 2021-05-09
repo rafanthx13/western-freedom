@@ -9,7 +9,7 @@
 
           <b-field label="Id">
             <b-input
-              type="number"
+              type="text"
               v-model="row.id"
               disabled
             >
@@ -56,12 +56,10 @@ export default {
   methods: {
 
     editTag() {
-      let tag_id = this.row.id
-      let new_row = this.row
-      Tag.put(tag_id, new_row)
+      Tag.put(this.row.id, this.row)
         .then(() => {
           console.log('DEU TUDO CERTO')
-          this.$emit('isDeleted', new_row)
+          this.$emit('isDeleted', this.row)
           this.$emit('close')
         })
         .catch(() => {

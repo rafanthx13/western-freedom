@@ -97,11 +97,13 @@ export default {
         if (formIsValid) {
           Tag.post(this.tag)
             .then((result) => {
-              this.$emit('isCreated', result.data)
+              console.log(result)
+              this.$emit('isCreated', result.data())
               this.$emit('close')
             })
-            .catch(() => {
+            .catch((err) => {
               this.$emit('isCreated', false)
+              console.error(err);
               this.$emit('close')
             });
         } else {

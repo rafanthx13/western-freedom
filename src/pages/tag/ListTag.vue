@@ -47,10 +47,11 @@ import DeleteTagModal from '../../components/modals/DeleteTagModal'
 import EditTagModal from '../../components/modals/EditTagModal'
 import CreateTagModal from '../../components/modals/CreateTagModal'
 import notificationMixin from './../../mixins/notifications'
+import fireHandler from './../../mixins/fireHandler'
 
 export default {
 
-  mixins: [notificationMixin],
+  mixins: [notificationMixin, fireHandler],
 
    data() {
     return {
@@ -63,10 +64,12 @@ export default {
     this.isLoading = true
     Tag.getAll()
       .then((result) => {
-        this.tags = result.data;
+        this.tags = this.getFireBaseList(result);
         this.isLoading = false
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error(err);
+        this.isLoading = false
         this.notify_error("Erro ao buscar Tags");
       });
   },
@@ -86,7 +89,6 @@ export default {
               this.tags.push(new_row)
               this.notify_success("Tag adicionada com sucesso")
             } else {
-              console.log('foi deletado')
               this.notify_error('Erro ao criar Tag')
             }
           }

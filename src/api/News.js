@@ -1,49 +1,93 @@
-import http from './http'
-import store from '../store';
-
-let news = store.getters.getRoutes.news;
+import { newsCollection, postDoc } from './../database/firebase'
 
 export default class {
 
+  static post(body){
+    return postDoc(newsCollection, body)
+  }
+
   static getAll(){
-    return http.get(news.getAll);
+    return newsCollection.get()
   }
 
-  static getOne(id){
-    return http.get(news.getOne + id);
-  }
-
+  // TODO: Tornar ela uma promisse; not-in e in serem parametros para ecnonomizar e precisar de só 1 async function
+  // FireStore só aceita pegar até 10 elmeento no not in/in. Se tiver mais, fara mais consultas a cada 10 elementos
   static getAllExceptList(listId){
-    // console.log('getAllExceptList : listId', listId)
-    let acc = ''
-    for (let aid of listId){
-      acc += 'id_ne=' + aid + '&' // '_ne para excluir
+    let alist = []
+    let lengthList = listId.length
+
+    async function getMyList(minylist) {
+      console.log('consulta minylist :>> ', minylist);
+      const result = await newsCollection.where('id', 'not-in', minylist).get()
+      for(const doc of result.docs){
+        console.log(doc.id, '=>', doc.data());
+        alist.push(doc.data())
+      }
     }
-    acc = acc.slice(0,-1) // remove last &
-    // console.log('acc', acc)
-    return http.get(news.getlist + '?' + acc);
+
+    if(lengthList < 10){
+      console.log('listId :>> ', listId);
+      getMyList(listId)
+      console.log('RETORNO < 10', alist)
+      return alist
+
+    } else {
+      let count = 0
+      let limit = 10
+      while(limit <=  lengthList-1){
+        let minylist = listId.slice(count*10, limit)
+        console.log('lengthList', lengthList, '||', 'count', count, 'lengthList - (count*10)', lengthList - (count*10));
+        limit = lengthList - ((count+2)*10) <= 0 ? lengthList-1 : limit + 10 // determina se termina
+        count += 1
+        // get
+        getMyList(minylist)
+      }
+      console.log('RETORNO > 10', alist)
+      return alist
+    }
   }
 
   static getlist(listId){
-    let acc = ''
-    for (let aid of listId){
-      acc += 'id=' + aid + '&'
+    let alist = []
+    let lengthList = listId.length
+
+    async function getMyList(minylist) {
+      console.log('consulta minylist :>> ', minylist);
+      const result = await newsCollection.where('id', 'in', minylist).get()
+      for(const doc of result.docs){
+        console.log(doc.id, '=>', doc.data());
+        alist.push(doc.data())
+      }
     }
-    acc = acc.slice(0,-1) // remove last &
-    return http.get(news.getlist + '?' + acc);
-  }
 
+    if(lengthList < 10){
+      console.log('listId :>> ', listId);
+      getMyList(listId)
+      console.log('RETORNO < 10', alist)
+      return alist
 
-  static post(body){
-    return http.post(news.post, body);
+    } else {
+      let count = 0
+      let limit = 10
+      while(limit <=  lengthList-1){
+        let minylist = listId.slice(count*10, limit)
+        console.log('lengthList', lengthList, '||', 'count', count, 'lengthList - (count*10)', lengthList - (count*10));
+        limit = lengthList - ((count+2)*10) <= 0 ? lengthList-1 : limit + 10 // determina se termina
+        count += 1
+        // get
+        getMyList(minylist)
+      }
+      console.log('RETORNO > 10', alist)
+      return alist
+    }
   }
 
   static put(body){
-    return http.put(news.put + body.id, body);
+    return newsCollection.doc(body.id).set(body)
   }
 
   static delete(id){
-    return http.delete(news.delete + id);
+    return newsCollection.doc(id).delete()
   }
 
 

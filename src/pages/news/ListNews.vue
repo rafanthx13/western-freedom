@@ -71,8 +71,12 @@
 import News from "../../api/News";
 import DeleteNewsModal from '../../components/modals/DeleteNewsModal'
 // import EditNewsModal from '../../components/modals/EditNewsModal'
+import notificationMixin from './../../mixins/notifications'
+import fireHandler from './../../mixins/fireHandler'
 
   export default {
+
+    mixins: [notificationMixin, fireHandler],
 
     data() {
       return {
@@ -85,11 +89,13 @@ import DeleteNewsModal from '../../components/modals/DeleteNewsModal'
       this.isLoading = true
       News.getAll()
         .then((result) => {
-          this.news = result.data;
+          this.news = this.getFireBaseList(result)
           this.isLoading = false
         })
-        .catch(() => {
-          console.log("error");
+        .catch((err) => {
+          console.error(err);
+          this.isLoading = false
+          this.notify_error("Erro ao buscar Notícias");
         });
     },
 

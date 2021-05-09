@@ -85,12 +85,16 @@ import News from "../../api/News";
 import Person from "../../api/Person";
 import moment from "moment";
 import NewsTile from "../../components/NewsTile";
+import fireHandler from './../../mixins/fireHandler'
+
 
 export default {
-  
+
   components: {
     NewsTile,
   },
+
+  mixins: [fireHandler],
 
   data() {
     return {
@@ -113,13 +117,12 @@ export default {
     if(!this.$route.params.model){
       Person.getOne(this.$route.params.id)
         .then((result) => {
-          this.person = result.data;
+          this.person = result.data();
           this.age = moment().diff( moment(this.person.birth_date, "MM-DD-YYYY"), 'years');
           this.initializeViewPerson()
         })
         .catch((err) => {
-          console.log(err)
-          console.log("error");
+          console.error(err)
         });
     } else {
       this.person = this.$route.params.model;
@@ -139,25 +142,26 @@ export default {
       this.person.birth_date = moment(this.person.birth_date, "MM-DD-YYYY").format(
         "DD/MM/YYYY"
       ); // recebe no format DD-MM-YYYY e converte para DD/MM/YYYY
-      let listNews = [];
       Person_x_News.getAllfromId(this.person.id)
         .then((result) => {
-          listNews = result.data.map((el) => el.id_news)
+          let listNews = this.getFireBaseList(result).map((el) => el.id_news)
+          console.log('listNews :>> ', listNews);
           if(listNews.length != 0){
-            News.getlist(listNews) // filtrar as noticais desse cara
-            .then((result) => {
-              this.news = result.data;
-            })
-            .catch((err) => {
-              console.err(err);
-            });
+            this.news = News.getlist(listNews)
+            // News.getlist(listNews) // filtrar as noticais desse cara
+            // .then((result) => {
+            //   this.news = this.getFireBaseList(result)
+            // })
+            // .catch((err) => {
+            //   console.error(err);
+            // });
           } else {
             this.news = [] // sem noticias
           }
 
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     },
 

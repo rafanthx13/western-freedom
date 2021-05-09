@@ -52,7 +52,7 @@
                     </b-tag>
                   </b-taglist>
                 </p>
-                
+
               </div>
             </div>
           </article>
@@ -77,6 +77,7 @@ import News from "../../api/News";
 import Person from "../../api/Person";
 import Person_x_News from "../../api/Person_x_News";
 import notificationMixin from "./../../mixins/notifications";
+import fireHandler from "./../../mixins/fireHandler";
 
 export default {
 
@@ -90,7 +91,7 @@ export default {
     };
   },
 
-  mixins: [notificationMixin],
+  mixins: [notificationMixin, fireHandler],
 
   created() {
     if (this.$route.params.model) {
@@ -102,20 +103,21 @@ export default {
         console.log("Params: Add Noticias");
         // ADD: Busca as que nao tem (aproveitando que ja sabemos quais temos)
         let listHasNews = this.$route.params.news.map((el) => el.id);
-        News.getAllExceptList(listHasNews)
-          .then((result) => {
-            this.news = result.data;
-          })
-          .catch((err) => {
-            console.error(err);
-          });
+        this.news = News.getAllExceptList(listHasNews)
+        // News.getAllExceptList(listHasNews)
+        //   .then((result) => {
+        //     this.news = this.getFireBaseList(result);
+        //   })
+        //   .catch((err) => {
+        //     console.error(err);
+        //   });
       } else {
         console.log("Params: Deletar Noticias");
         // DELETE: Recebe as que vinheram do ViewPeron []
         this.news = this.$route.params.news;
         Person_x_News.getAllfromId(this.person.id) // busca ID de noticias que tem
           .then((result) => {
-            this.association_person_to_news = result.data;
+            this.association_person_to_news = this.getFireBaseList(result);
           })
           .catch((err) => {
             console.log(err);
@@ -130,14 +132,14 @@ export default {
           this.person = result.data;
           Person_x_News.getAllfromId(this.person.id) // busca ID de noticias que tem
             .then((result) => {
-              this.association_person_to_news = result.data;
+              this.association_person_to_news = this.getFireBaseList(result);
               if (this.isAddNews) {
                 console.log("URL: Add Noticias");
                 // ADD: Busca as que nao tem (aproveitando que ja sabemos quais temos)
                 let listHasNews = result.data.map((el) => el.id_news);
                 News.getAllExceptList(listHasNews)
                   .then((result) => {
-                    this.news = result.data;
+                    this.news = this.getFireBaseList(result);
                   })
                   .catch(() => {
                     console.log("error");
@@ -149,7 +151,7 @@ export default {
                 if (listNews.length != 0) {
                   News.getlist(listNews) // filtrar as noticais desse cara
                     .then((result) => {
-                      this.news = result.data;
+                      this.news = this.getFireBaseList(result);
                     })
                     .catch((err) => {
                       console.err(err);

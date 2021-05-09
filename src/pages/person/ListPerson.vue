@@ -4,9 +4,9 @@
     <div class="box mx-5 my-5">
       <!-- Ou gera tudo altomatico, ou, se houver alguma customizada, tem que customizar tudo -->
       <b-table :data="persons" :striped="true">
-        <b-table-column field="id" label="ID" width="40" numeric v-slot="props">
+        <!-- <b-table-column field="id" label="ID" width="40" numeric v-slot="props">
           {{ props.row.id }}
-        </b-table-column>
+        </b-table-column> -->
 
         <b-table-column field="name" label="Name" v-slot="props" centered>
           {{ props.row.name }}
@@ -16,19 +16,19 @@
           {{ props.row.position }}
         </b-table-column>
 
-        <b-table-column field="id" label="View" width="40" centered v-slot="props">
+        <b-table-column field="name" label="View" width="40" centered v-slot="props">
           <b-button class="is-info info-button" @click="handleViewProfile(props.row)">
             <b-icon pack="mdi" icon="card-account-details"> </b-icon>
           </b-button>
         </b-table-column>
 
-        <b-table-column field="id" label="Edit" width="40" centered v-slot="props">
+        <b-table-column field="name" label="Edit" width="40" centered v-slot="props">
           <b-button class="is-warning edit-button" @click="handleEdit(props.row)">
             <b-icon pack="mdi" icon="account-edit"> </b-icon>
           </b-button>
         </b-table-column>
 
-        <b-table-column field="id" label="Delete" width="40" centered v-slot="props">
+        <b-table-column field="name" label="Delete" width="40" centered v-slot="props">
           <b-button class="is-danger delete-button" @click="handleDelete(props.row)">
             <b-icon pack="mdi" icon="delete"> </b-icon>
           </b-button>
@@ -49,19 +49,22 @@
 import Person from "../../api/Person";
 import DeletePersonModal from "./../../components/modals/DeletePersonModal";
 import notificationMixin from './../../mixins/notifications'
+import fireHandler from './../../mixins/fireHandler'
 
 export default {
 
-  mixins: [notificationMixin],
+  mixins: [notificationMixin, fireHandler],
 
   created() {
     this.isLoading = true
     Person.getAll()
       .then((result) => {
-        this.persons = result.data;
+        this.persons = this.getFireBaseList(result)
         this.isLoading = false
       })
-      .catch(() => {
+      .catch((err) => {
+        this.isLoading = false
+        console.error(err);
         this.notify_error('Erro ao buscar pessoas')
       });
   },
@@ -115,21 +118,6 @@ export default {
 };
 </script>
 
-<style  scoped>
+<style scoped>
 
-/* .edit-button:hover {
-  color: white;
-}
-
-.info-button {
-  color: #4f451b;
-}
-
-.delete-button {
-  color: #4f451b;
-}
-
-.delete-button:hover {
-  color: white;
-} */
 </style>

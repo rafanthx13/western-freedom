@@ -8,7 +8,7 @@
         <section class="modal-card-body">
           <b-field label="Id">
             <b-input
-              type="number"
+              type="text"
               v-model="row.id"
               disabled
             >
@@ -54,11 +54,10 @@ export default {
   methods: {
 
     deleteTag() {
-      let tag_id = this.row.id
-        Tag.delete(tag_id)
+        Tag.delete(this.row.id)
           .then(() => {
             console.log('DEU TUDO CERTO')
-            this.$emit('isDeleted', tag_id)
+            this.$emit('isDeleted', this.row.id)
             this.$emit('close')
           })
           .catch(() => {
