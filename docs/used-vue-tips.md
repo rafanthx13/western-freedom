@@ -153,3 +153,24 @@ Chamando
 import { personCollection, postDoc } from './../database/firebase'
 ````
 
+## ENV VARIABLE IN VUE
+
+Tanto Fazendo locamente quanto no deploy, **TODAS AS VARIAVEIS DE AMBIENTE DEVEM COMEÇAR COM 'VUE_APP_'
+
+LEIA CALMAMENTE ISSO:
+https://cli.vuejs.org/guide/mode-and-env.html#using-env-variables-in-client-side-code
+
+````env
+VUE_APP_ROOT_API=
+VUE_APP_API_KEY=
+VUE_APP_AUTH_DOMAIN=
+VUE_APP_DATABASE_URL=
+VUE_APP_PROJECT_ID=
+VUE_APP_STORAGE_BUCKET=
+VUE_APP_MESSAGING_ID=
+VUE_APP_APP_ID=
+VUE_APP_MEASUREMENT_ID=
+````
+
+Assim, as variáveis do Netlify podem ser colocados no Deploy, **MAS NÃO FICA SEGURO**
+

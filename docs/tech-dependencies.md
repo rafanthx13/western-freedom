@@ -18,7 +18,7 @@ Colors
 Imagem de Cesar
 + https://game-icons.net/1x1/delapouite/caesar.html
 
-## JSON Server
+## JSON Server (Deprecated)
 
 Instalado globalmente para gerar um back simples para prototipação
 
@@ -26,4 +26,7 @@ Instalado globalmente para gerar um back simples para prototipação
 json-server --watch db.json
 ````
 
+## Deploy in Netlify
+
+Usei o Netlify, entâo, basta dar o push no repo que vai fazer o deploy automaticamente. Mesmo assim pode dar algum problema então, olhe o dashboard do Netlify.
 

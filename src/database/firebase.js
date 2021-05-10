@@ -1,10 +1,8 @@
 import firebase from "firebase/app"
 import 'firebase/firestore' // database module
 import 'firebase/auth' // auth module
+
 import firebaseConfig from './firebaseConfig' // SECRET KEY
-
-
-console.log('AKI EH ANTES DE CHAMAR O FIREBASE', process.env)
 firebase.initializeApp(firebaseConfig)
 
 // utils

@@ -1,6 +1,5 @@
 # TODO
 
-
 TODO:
 + TAGS
   - Criar Tags [x]
@@ -90,3 +89,13 @@ TODO-NEXT
 TODO-FUTURE
 + Por complete_name nas pessoas, para sabermos sua descendencia
 + Quadro de amigos e inimigos
+
+
+TODO: FireBase está exposto, entao como é que eu faço?
+TODO: FireBase está exposto, entao como é que eu faço?
+TODO: FireBase está exposto, entao como é que eu faço?
+TODO: FireBase está exposto, entao como é que eu faço?
+TODO: FireBase está exposto, entao como é que eu faço?
+TODO: FireBase está exposto, entao como é que eu faço?
+TODO: FireBase está exposto, entao como é que eu faço?
+TODO: FireBase está exposto, entao como é que eu faço?
