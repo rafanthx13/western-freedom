@@ -9,6 +9,10 @@ FrontEnd Components Packages : BUEFY = Vue + Bulma
 + Textos e Ftamanhod e fonte: https://bulma.io/documentation/elements/title/
 + flex> https://bulma.io/documentation/helpers/flexbox-helpers/
 
+display: flex;
+    flex-direction: row;
+    justify-content: center;
+
 MATERIAL DESIGNS
 https://materialdesignicons.com/
 

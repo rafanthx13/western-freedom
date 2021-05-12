@@ -8,7 +8,7 @@
             detail-key="id"
             detail-transition="fade">
 
-         <b-table-column field="id" label="ID" width="40" numeric v-slot="props">
+        <b-table-column field="id" label="ID" width="40" numeric v-slot="props">
           {{ props.row.id }}
         </b-table-column>
 
@@ -36,13 +36,12 @@
           <article class="media">
             <div class="media-content">
               <div class="content">
-                <p>URL: <a :href="props.row.url">{{ props.row.url }}</a></p>
-                <p>Fonte: {{ props.row.source }}</p>
+                <p>URL + Fonte: <a :href="props.row.url">{{ props.row.source }}</a></p>
                 <p>Descrição: {{ props.row.description }}</p>
                 <p>Comentário: {{ props.row.comment }}</p>
-                <p>Data: {{ props.row.date }}</p>
-
-                <p class="is-flex-direction-row" style="justify-content: center !important;">
+                <p>Data: {{ props.row.date | convertDate }}</p>
+                <p>Tags da Notícia</p>
+                <div class="is-flex is-flex-direction-row is-justify-content-center">
                   <b-taglist centered>
                     <b-tag
                       type="is-info"
@@ -52,7 +51,8 @@
                       {{ value.name }}
                     </b-tag>
                   </b-taglist>
-                </p>
+                </div>
+
               </div>
             </div>
           </article>
@@ -70,9 +70,9 @@
 
 import News from "../../api/News";
 import DeleteNewsModal from '../../components/modals/DeleteNewsModal'
-// import EditNewsModal from '../../components/modals/EditNewsModal'
 import notificationMixin from './../../mixins/notifications'
 import fireHandler from './../../mixins/fireHandler'
+import moment from 'moment'
 
   export default {
 
@@ -82,6 +82,13 @@ import fireHandler from './../../mixins/fireHandler'
       return {
         news: [],
         isLoading: false,
+      }
+    },
+
+    filters: {
+      // Convert MM-DD-YYYY para DD/MM/YYYY
+      convertDate: function (value) {
+        return moment(value, "MM-DD-YYYY").format("DD/MM/YYYY");
       }
     },
 

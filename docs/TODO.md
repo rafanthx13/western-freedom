@@ -79,12 +79,31 @@ TO
 + Corrigir geraçâo de 'age' [x]
 + Adicionar Tags em ViewPerson [x]
 
+TODO-REVIEW PROJECT 10.05.2021
++ Adicionar notificaçoes em todos os update/create/delete corretamente [x]
++ Redirect ao criar alguma coisa (pessoa, notícia) [x]
++ Está aparecndo erro ao deleter tag [x] [Era porque havia tags sem id] [x]
++ Apagar consoles logs [x]
++ Alterar descriçâo do CreateNews para não ter limites [x]
++ Em ListNews, por centralizado as tags; Tirar ID; Por a data da notícia naquele formato [x]
+
++ Em ViewPerson, deixar a parte de notícias carregando até chegar a repsosta final [x]
+  + A imagem da pessoa deve ficar mais na vertigcal com padding no eixo X (como uma foto) [x]
++ Adicionar favicon personalizado [x]
+
+
 TODO-NEXT
 + GERENCIA DE DELETAÇÃO
   + Ao deletar usuário, deletar a associaçâo das notícias. Remover a associaçâo de ID
   + Gerenciar deletaçao de tag com (person/news) para suas respectivas entidades/tags [OBS: SERÁ QUE HAVERÁ TAGS DELETADAS?]
 + TELA HOME GRID LIST
 + Colcoar validaçâo corretamente (required)
++ SISTEMA DE LOGIN:
+  + Não permitir que qualquer um edite/delete coisas
++ TESTAR VALIDAÇÂO (OU) TENTAR OUTRA FORMA DE VALIDAÇÃO
++ Tela de erro do firebase caso der algum problema [x] [isos é feito validando rotas]
++ + Adicionar as tags de pessoas nas notícias (OPCIONAL)
+
 
 TODO-FUTURE
 + Por complete_name nas pessoas, para sabermos sua descendencia
@@ -92,10 +111,4 @@ TODO-FUTURE
 
 
 TODO: FireBase está exposto, entao como é que eu faço?
-TODO: FireBase está exposto, entao como é que eu faço?
-TODO: FireBase está exposto, entao como é que eu faço?
-TODO: FireBase está exposto, entao como é que eu faço?
-TODO: FireBase está exposto, entao como é que eu faço?
-TODO: FireBase está exposto, entao como é que eu faço?
-TODO: FireBase está exposto, entao como é que eu faço?
-TODO: FireBase está exposto, entao como é que eu faço?
+

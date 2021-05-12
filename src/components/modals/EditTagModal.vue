@@ -58,12 +58,11 @@ export default {
     editTag() {
       Tag.put(this.row.id, this.row)
         .then(() => {
-          console.log('DEU TUDO CERTO')
           this.$emit('isDeleted', this.row)
           this.$emit('close')
         })
-        .catch(() => {
-          console.log("DEU TUDO ERRADAO");
+        .catch((err) => {
+          console.error(err);
           this.$emit('isDeleted', false)
           this.$emit('close')
         });

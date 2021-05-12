@@ -66,6 +66,7 @@ extend("max", {
 
 import store from '../../store/index'
 import Tag from "../../api/Tag";
+import notificationMixin from './../../mixins/notifications'
 
 export default {
 
@@ -73,6 +74,7 @@ export default {
     ValidationProvider,
     ValidationObserver,
   },
+  mixins: [notificationMixin],
 
 
   data() {
@@ -97,23 +99,21 @@ export default {
         if (formIsValid) {
           Tag.post(this.tag)
             .then((result) => {
-              console.log(result)
               this.$emit('isCreated', result.data())
               this.$emit('close')
             })
             .catch((err) => {
-              this.$emit('isCreated', false)
               console.error(err);
+              this.$emit('isCreated', false)
               this.$emit('close')
             });
         } else {
-          console.log("Erro de Formulario");
+          this.notify_error.log("Erro de Formulario");
         }
       })
       .catch((err) => {
         console.error(err);
-        console.log("Erro de Formulario");
-        this.danger();
+        this.notify_error.log("Erro de Formulario");
       });
     },
 

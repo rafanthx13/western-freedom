@@ -53,7 +53,6 @@
             <!-- DESCRIPTION -->
             <b-field label="Descrição">
               <b-input
-                maxlength="500"
                 type="textarea"
                 v-model="news.description"
               ></b-input>
@@ -62,7 +61,6 @@
             <!-- COMMENT -->
             <b-field label="Comentário (Análise) da Notícia">
               <b-input
-                maxlength="500"
                 type="textarea"
                 v-model="news.comment"
               ></b-input>
@@ -189,7 +187,7 @@ export default {
         this.all_news_tags = this.getFireBaseList(result)
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         this.notify_error('Erro ao buscar Tags de Notícias')
       });
     Person.getAll()
@@ -197,7 +195,7 @@ export default {
         this.all_persons = this.getFireBaseList(result)
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         this.notify_error('Erro ao buscar Pessoas')
       });
 
@@ -227,14 +225,13 @@ export default {
           sendNews.date = moment(sendNews.date).format('MM-DD-YYYY')
           if(this.is_create){
             News.post(sendNews)
-              .then((result) => {
-                // console.log('result :>> ', result);
+              .then(() => {
                 this.associate_news_to_persons(sendNews, this.associate_persons)
                 this.notify_success("Notícia criada com sucesso")
-                this.clear();
+                this.$router.push({ name: "ListNews" });
               })
               .catch((err) => {
-                console.log(err);
+                console.error(err);
                 this.notify_error('Erro ao criar Notícias')
               });
           } else {
@@ -259,20 +256,19 @@ export default {
     },
 
     associate_news_to_persons(news, associate_persons){
-      console.log('news sended', news, associate_persons)
       try{
         for (let p of associate_persons){
           let relationate_person_to_news = { 'id_news': news.id, 'id_person': p.id}
           Person_x_News.post(relationate_person_to_news)
             .then(() => {
-              console.log('sucess :>> ');
             })
             .catch ( (err) => {
               console.error(err);
+              console.log('Erro para o POST em:', relationate_person_to_news)
             })
         }
       } catch (err){
-        console.log(err)
+        console.error(err)
         this.notify_error('Erro ao associar Notícia com Pessoas')
       }
     },

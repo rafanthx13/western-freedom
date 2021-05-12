@@ -9,7 +9,7 @@
           <!-- Show Image -->
           <div class="card-image">
             <figure class="image is-4by3">
-              <img :src="person.img_url" alt="Placeholder image" />
+              <img :src="person.img_url" alt="Placeholder image" class="px-6"/>
             </figure>
           </div>
         </div>
@@ -60,21 +60,23 @@
       </div>
 
       <!-- Column 2 : News -->
-      <div class="column" style="padding: 0.75rem !important">
+      <div class="column" style="padding: 0.75rem !important" :closable="false">
         <!-- <div class="title is-12 is-vertical"> -->
-           <h1 class="title is-4 pt-4">Notícias</h1>
+          <h1 class="title is-4 pt-4">Notícias</h1>
 
           <div class="mb-4" v-for="(value, key) in news" v-bind:key="key">
             <NewsTile v-bind:news="value" v-bind:key="key" />
           </div>
 
-          <div class="tile is-parent is-danger" v-if="news.length == 0">
+          <div class="tile is-parent is-danger" v-if="isEmpty">
             <article class="tile is-child notification is-danger">Sem Noticias</article>
           </div>
 
+          <b-loading :is-full-page="false" v-model="isLoading" :can-cancel="false"></b-loading>
+
           <br />
-        <!-- </div> -->
       </div>
+
     </div>
   </div>
 </template>
@@ -86,6 +88,7 @@ import Person from "../../api/Person";
 import moment from "moment";
 import NewsTile from "../../components/NewsTile";
 import fireHandler from './../../mixins/fireHandler'
+import notificationMixin from './../../mixins/notifications'
 
 
 export default {
@@ -94,7 +97,7 @@ export default {
     NewsTile,
   },
 
-  mixins: [fireHandler],
+  mixins: [fireHandler, notificationMixin],
 
   data() {
     return {
@@ -110,10 +113,13 @@ export default {
       start_date: '',
       age: 0,
       news: [],
+      isLoading: false,
+      isEmpty: false
     };
   },
 
   created() {
+    this.isLoading = true
     if(!this.$route.params.model){
       Person.getOne(this.$route.params.id)
         .then((result) => {
@@ -123,18 +129,15 @@ export default {
         })
         .catch((err) => {
           console.error(err)
+          this.isLoading = false
+          this.notify_error('Erro ao carregar as notícias')
         });
     } else {
       this.person = this.$route.params.model;
       this.age = moment().diff( moment(this.person.birth_date, "MM-DD-YYYY"), 'years');
       this.initializeViewPerson()
     }
-
-
-
   },
-
-
 
   methods: {
 
@@ -145,40 +148,22 @@ export default {
       Person_x_News.getAllfromId(this.person.id)
         .then((result) => {
           let listNews = this.getFireBaseList(result).map((el) => el.id_news)
-          console.log('listNews :>> ', listNews);
           if(listNews.length != 0){
             this.news = News.getlist(listNews)
-            // News.getlist(listNews) // filtrar as noticais desse cara
-            // .then((result) => {
-            //   this.news = this.getFireBaseList(result)
-            // })
-            // .catch((err) => {
-            //   console.error(err);
-            // });
+            this.isLoading = false
           } else {
             this.news = [] // sem noticias
+            this.isLoading = false
+            this.isEmpty = true
           }
-
         })
         .catch((err) => {
+          this.notify_error('Erro ao carregar as notícias')
           console.error(err);
+          this.isLoading = false
+
         });
     },
-
-    /*
-// Verificar se veio de ViewPerson ou URL direto
-    if (this.$route.params.model) {
-      this.person = this.$route.params.model;
-
-    }
-    if(this.isAddNews){
-      // Selecionar Notícias que a pessoa não tem para ADD
-
-    } else {
-      // Selecionar Notícias que a pessoa tem para DELETE
-
-    }
-    */
 
     goToAddNewsToPerson() {
       this.$router.push({

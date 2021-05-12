@@ -169,8 +169,9 @@ export default {
       .then((result) => {
         this.all_person_tags = this.getFireBaseList(result);
       })
-      .catch(() => {
-        console.log("error");
+      .catch((err) => {
+        console.error(err)
+        this.notify_error('Erro na Busca de Tags')
       });
   },
 
@@ -185,9 +186,10 @@ export default {
             Person.post(sendPerson)
             .then( () => {
               this.notify_success('Sucesso no cadastro de pessoa');
+              this.$router.push({ name: "ListPerson" });
             })
             .catch((err) => {
-              console.log(err);
+              console.error(err);
               this.notify_error('Error');
             });
           } else {
@@ -197,8 +199,8 @@ export default {
               this.$router.push({ name: "ListPerson" });
             })
             .catch((err) => {
-              console.log(err);
-              this.notify_error('Error');
+              console.error(err);
+              this.notify_error('Erro ao Editar Pessoa');
             });
           }
 

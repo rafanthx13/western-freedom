@@ -8,7 +8,7 @@
     <div class="box mx-5 my-5">
       <b-table :data="tags" :striped="true">
 
-         <b-table-column field="id" label="ID" width="40" numeric v-slot="props">
+        <b-table-column field="id" label="ID" width="40" numeric v-slot="props">
           {{ props.row.id }}
         </b-table-column>
 
@@ -53,7 +53,7 @@ export default {
 
   mixins: [notificationMixin, fireHandler],
 
-   data() {
+  data() {
     return {
       tags: [],
       isLoading: false
@@ -75,6 +75,14 @@ export default {
   },
 
   methods: {
+
+    class_type(value) {
+      if (value == 'person') {
+          return 'tag is-success'
+      } else if (value == 'news') {
+          return 'tag is-warning'
+      }
+    },
 
     modalCreateTag() {
       this.$buefy.modal.open({
@@ -119,14 +127,6 @@ export default {
       })
     },
 
-    class_type(value) {
-      if (value == 'person') {
-          return 'tag is-success'
-      } else if (value == 'news') {
-          return 'tag is-warning'
-      }
-    },
-
     handleEdit(row) {
       this.$buefy.modal.open({
         component: EditTagModal,
@@ -150,15 +150,4 @@ export default {
 </script>
 
 <style scoped>
-.edit-button:hover {
-  color: white;
-}
-
-.delete-button {
-  color: #4f451b;
-}
-
-.delete-button:hover {
-  color: white;
-}
 </style>

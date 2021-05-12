@@ -17,18 +17,18 @@ export default class {
     let lengthList = listId.length
 
     async function getMyList(minylist) {
-      console.log('consulta minylist :>> ', minylist);
+      // console.log('consulta minylist :>> ', minylist);
       const result = await newsCollection.where('id', 'not-in', minylist).get()
       for(const doc of result.docs){
-        console.log(doc.id, '=>', doc.data());
+        // console.log(doc.id, '=>', doc.data());
         alist.push(doc.data())
       }
     }
 
     if(lengthList < 10){
-      console.log('listId :>> ', listId);
+      // console.log('listId :>> ', listId);
       getMyList(listId)
-      console.log('RETORNO < 10', alist)
+      // console.log('RETORNO < 10', alist)
       return alist
 
     } else {
@@ -36,13 +36,13 @@ export default class {
       let limit = 10
       while(limit <=  lengthList-1){
         let minylist = listId.slice(count*10, limit)
-        console.log('lengthList', lengthList, '||', 'count', count, 'lengthList - (count*10)', lengthList - (count*10));
+        // console.log('lengthList', lengthList, '||', 'count', count, 'lengthList - (count*10)', lengthList - (count*10));
         limit = lengthList - ((count+2)*10) <= 0 ? lengthList-1 : limit + 10 // determina se termina
         count += 1
         // get
         getMyList(minylist)
       }
-      console.log('RETORNO > 10', alist)
+      // console.log('RETORNO > 10', alist)
       return alist
     }
   }
@@ -52,18 +52,18 @@ export default class {
     let lengthList = listId.length
 
     async function getMyList(minylist) {
-      console.log('consulta minylist :>> ', minylist);
+      // console.log('consulta minylist :>> ', minylist);
       const result = await newsCollection.where('id', 'in', minylist).get()
       for(const doc of result.docs){
-        console.log(doc.id, '=>', doc.data());
+        // console.log(doc.id, '=>', doc.data());
         alist.push(doc.data())
       }
     }
 
     if(lengthList < 10){
-      console.log('listId :>> ', listId);
+      // console.log('listId :>> ', listId);
       getMyList(listId)
-      console.log('RETORNO < 10', alist)
+      // console.log('RETORNO < 10', alist)
       return alist
 
     } else {
@@ -71,13 +71,13 @@ export default class {
       let limit = 10
       while(limit <=  lengthList-1){
         let minylist = listId.slice(count*10, limit)
-        console.log('lengthList', lengthList, '||', 'count', count, 'lengthList - (count*10)', lengthList - (count*10));
+        // console.log('lengthList', lengthList, '||', 'count', count, 'lengthList - (count*10)', lengthList - (count*10));
         limit = lengthList - ((count+2)*10) <= 0 ? lengthList-1 : limit + 10 // determina se termina
         count += 1
         // get
         getMyList(minylist)
       }
-      console.log('RETORNO > 10', alist)
+      // console.log('RETORNO > 10', alist)
       return alist
     }
   }
