@@ -69,7 +69,7 @@
             <!-- TAGS -->
             <b-field label="Tags de notícias">
               <b-taginput
-                v-model="news.news_tag"
+                v-model="news.news_tags"
                 :data="filteredTags"
                 autocomplete
                 :allow-new="false"
@@ -85,7 +85,7 @@
             <!-- PERSONS -->
             <b-field label="Pessoas">
               <b-taginput
-                v-model="associate_persons"
+                v-model="news.persons_news"
                 :data="filteredPersons"
                 autocomplete
                 :allow-new="false"
@@ -182,9 +182,9 @@ export default {
       this.news.date = new Date(this.news.date)
       this.is_create = false
     }
-    Tag.getNewsTags()
+    Tag.getAll()
       .then((result) => {
-        this.all_news_tags = this.getFireBaseList(result)
+        this.all_news_tags = result.data
       })
       .catch((err) => {
         console.error(err);
@@ -192,7 +192,7 @@ export default {
       });
     Person.getAll()
       .then((result) => {
-        this.all_persons = this.getFireBaseList(result)
+        this.all_persons = result.data
       })
       .catch((err) => {
         console.error(err);
@@ -222,11 +222,11 @@ export default {
       this.$refs.observer.validate().then((result) => {
         if (result) {
           const sendNews = JSON.parse(JSON.stringify(this.news));
-          sendNews.date = moment(sendNews.date).format('MM-DD-YYYY')
+          sendNews.date = moment(sendNews.date).format('YYYY-MM-DD')
           if(this.is_create){
             News.post(sendNews)
               .then(() => {
-                this.associate_news_to_persons(sendNews, this.associate_persons)
+                // this.associate_news_to_persons(sendNews, this.associate_persons)
                 this.notify_success("Notícia criada com sucesso")
                 this.$router.push({ name: "ListNews" });
               })

@@ -102,22 +102,22 @@ export default {
       if (this.isAddNews) {
         console.log("Params: Add Noticias");
         // ADD: Busca as que nao tem (aproveitando que ja sabemos quais temos)
-        let listHasNews = this.$route.params.news.map((el) => el.id);
-        this.news = News.getAllExceptList(listHasNews)
-        // News.getAllExceptList(listHasNews)
-        //   .then((result) => {
-        //     this.news = this.getFireBaseList(result);
-        //   })
-        //   .catch((err) => {
-        //     console.error(err);
-        //   });
+        // let listHasNews = this.$route.params.news.map((el) => el.id);
+        // this.news = News.getAllExceptList(listHasNews)
+        News.getAllNewsExceptOnePerson(this.person.id)
+          .then((result) => {
+            this.news = result.data;
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       } else {
         console.log("Params: Deletar Noticias");
         // DELETE: Recebe as que vinheram do ViewPeron []
         this.news = this.$route.params.news;
-        Person_x_News.getAllfromId(this.person.id) // busca ID de noticias que tem
+        News.getNewsFromOnePerson(this.person.id) // busca ID de noticias que tem
           .then((result) => {
-            this.association_person_to_news = this.getFireBaseList(result);
+            this.association_person_to_news = result.data;
           })
           .catch((err) => {
             console.log(err);
@@ -130,16 +130,15 @@ export default {
       Person.getOne(this.$route.params.id) // busca pessoa
         .then((result) => {
           this.person = result.data;
-          Person_x_News.getAllfromId(this.person.id) // busca ID de noticias que tem
+          News.getNewsFromOnePerson(this.person.id) // busca ID de noticias que tem
             .then((result) => {
-              this.association_person_to_news = this.getFireBaseList(result);
+              this.association_person_to_news = result.data;
               if (this.isAddNews) {
                 console.log("URL: Add Noticias");
                 // ADD: Busca as que nao tem (aproveitando que ja sabemos quais temos)
-                let listHasNews = result.data.map((el) => el.id_news);
-                News.getAllExceptList(listHasNews)
+                News.getAllNewsExceptOnePerson(this.person.id)
                   .then((result) => {
-                    this.news = this.getFireBaseList(result);
+                    this.news = result.data;
                   })
                   .catch(() => {
                     console.log("error");
@@ -149,9 +148,9 @@ export default {
                 // DELETE: Busca as noticais de acordo com os ID pegos
                 let listNews = result.data.map((el) => el.id_news);
                 if (listNews.length != 0) {
-                  News.getlist(listNews) // filtrar as noticais desse cara
+                  News.getNewsFromOnePerson(this.person.id) // filtrar as noticais desse cara
                     .then((result) => {
-                      this.news = this.getFireBaseList(result);
+                      this.news = result.data;
                     })
                     .catch((err) => {
                       console.err(err);
@@ -178,24 +177,33 @@ export default {
         if (this.isAddNews) {
           // URL : Add News
           // console.log("tem algo", this.checkedRows);
-          for (let checkedNews of this.checkedRows) {
-            // console.log("Noticia a ser adiciona", checkedNews);
-            let body = { id_news: checkedNews.id, id_person: this.person.id };
-            Person_x_News.post(body)
-              .then(() => {
-                // this.news.push([checkedNews]) // tirar noticia por que agora ele tem
-                this.checkedRows = this.checkedRows.filter((row) => {
-                  return row.id != checkedNews.id;
-                });
-                this.news = this.news.filter((row) => {
-                  return row.id != checkedNews.id;
-                });
-              })
-              .catch((err) => {
+          let newsToAdd = this.checkedRows.map( el => el.id)
+          // for (let checkedNews of this.checkedRows) {
+          News.addOnePersonToNews(this.person.id, newsToAdd)
+            .then(() => {
+              console.log('rtet')
+            })
+            .catch((err) => {
                 console.log(err);
                 this.notify_error("Erro ao adicionar Notícia");
               });
-          }
+            // console.log("Noticia a ser adiciona", checkedNews);
+            // let body = { id_news: checkedNews.id, id_person: this.person.id };
+            // Person_x_News.post(body)
+            //   .then(() => {
+            //     // this.news.push([checkedNews]) // tirar noticia por que agora ele tem
+            //     this.checkedRows = this.checkedRows.filter((row) => {
+            //       return row.id != checkedNews.id;
+            //     });
+            //     this.news = this.news.filter((row) => {
+            //       return row.id != checkedNews.id;
+            //     });
+            //   })
+            //   .catch((err) => {
+            //     console.log(err);
+            //     this.notify_error("Erro ao adicionar Notícia");
+            //   });
+          // }
           this.notify_success(
             this.checkedRows.length > 1
               ? "Notícias adicionadas com sucesso"
@@ -204,35 +212,49 @@ export default {
         } else {
           // URL : delete News :: association_person_to_news juntar com as que selecionei
           // Delete corretamente [x] | Atualizar Lista e AFTER []
-          let list_of_Ids_to_be_deleted = this.checkedRows.map((obj) => obj.id);
-          let news_to_delete = this.association_person_to_news.filter((row) => {
-            return !(row.id_news in list_of_Ids_to_be_deleted);
-          });
-          // console.log('list_of_Ids_to_be_deleted', list_of_Ids_to_be_deleted)
-          // console.log('association_person_to_news', this.association_person_to_news)
-          // console.log('news_to_delete', news_to_delete)
-          for (let link_news_to_person of news_to_delete) {
-            // console.log('Executou DELETE para:', link_news_to_person)
-            Person_x_News.delete(link_news_to_person.id)
-              .then((result) => {
-                this.news = result.data;
-                this.news = this.news.filter((row) => {
-                  return row.id != link_news_to_person.id_news;
-                });
-                this.checkedRows = this.checkedRows.filter((row) => {
-                  return row.id != link_news_to_person.id_news;
-                });
-                this.notify_success("Notícia(s) deleta(s) com sucesso");
-              })
-              .catch((err) => {
-                console.error(err);
-                this.notify_error("Erro ao deletar Notícias");
+
+          let newsToDelete = this.checkedRows.map( el => el.id)
+          // for (let checkedNews of this.checkedRows) {
+          News.deleteOnePersonFromNews(this.person.id, newsToDelete)
+            .then(() => {
+              console.log('rtet')
+            })
+            .catch((err) => {
+                console.log(err);
+                this.notify_error("Erro ao adicionar Notícia");
               });
-          }
+
+
+
+          // let list_of_Ids_to_be_deleted = this.checkedRows.map((obj) => obj.id);
+          // let news_to_delete = this.association_person_to_news.filter((row) => {
+          //   return !(row.id_news in list_of_Ids_to_be_deleted);
+          // });
+          // // console.log('list_of_Ids_to_be_deleted', list_of_Ids_to_be_deleted)
+          // // console.log('association_person_to_news', this.association_person_to_news)
+          // // console.log('news_to_delete', news_to_delete)
+          // for (let link_news_to_person of news_to_delete) {
+          //   // console.log('Executou DELETE para:', link_news_to_person)
+          //   Person_x_News.delete(link_news_to_person.id)
+          //     .then((result) => {
+          //       this.news = result.data;
+          //       this.news = this.news.filter((row) => {
+          //         return row.id != link_news_to_person.id_news;
+          //       });
+          //       this.checkedRows = this.checkedRows.filter((row) => {
+          //         return row.id != link_news_to_person.id_news;
+          //       });
+          //       this.notify_success("Notícia(s) deleta(s) com sucesso");
+          //     })
+          //     .catch((err) => {
+          //       console.error(err);
+          //       this.notify_error("Erro ao deletar Notícias");
+          //     });
+          // }
           this.notify_success(
-            news_to_delete.length > 1
-              ? "Notícias deletadas com sucesso"
-              : "Noticia deletada com sucesso"
+            // news_to_delete.length > 1
+            //   ? "Notícias deletadas com sucesso"
+              "Noticia deletada com sucesso"
           );
         }
       } else {

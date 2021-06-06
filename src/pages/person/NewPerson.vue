@@ -20,6 +20,19 @@
 
             <ValidationProvider
               v-slot="{ errors }"
+              name="Name"
+              rules="required|max:50"
+            >
+              <b-field label="Nome Completo">
+                <b-input
+                  v-model="person.complete_name"
+                  :error-messages="errors"
+                ></b-input>
+              </b-field>
+            </ValidationProvider>
+
+            <ValidationProvider
+              v-slot="{ errors }"
               name="ImageSrc"
               rules="required"
             >
@@ -81,7 +94,7 @@
 
             <b-field label="Insira Tags para a Pessoa">
               <b-taginput
-                v-model="person.person_tags"
+                v-model="person.persons_tags"
                 :data="filteredTags"
                 autocomplete
                 :allow-new="false"
@@ -150,7 +163,7 @@ export default {
         description: "",
         birth_date: new Date(),
         position: "",
-        person_tags: [],
+        persons_tags: [],
       },
       filteredTags: [],
 
@@ -165,9 +178,9 @@ export default {
       this.person.birth_date = new Date(this.person.birth_date)
       this.is_create = false
     }
-    Tag.getPersonTags()
+    Tag.getAll()
       .then((result) => {
-        this.all_person_tags = this.getFireBaseList(result);
+        this.all_person_tags = result.data;
       })
       .catch((err) => {
         console.error(err)
@@ -181,7 +194,8 @@ export default {
         if (result) {
           // Necessario pois no componente datepicker nao pode receber outro valor que nao seja um new Date()
           const sendPerson = JSON.parse(JSON.stringify(this.person))
-          sendPerson.birth_date = moment(sendPerson.birth_date).format('MM-DD-YYYY')
+          // sendPerson.persons_tags = sendPerson.persons_tags.map( el => el.id)
+          sendPerson.birth_date = moment(sendPerson.birth_date).format('YYYY-MM-DD')
           if(this.is_create){
             Person.post(sendPerson)
             .then( () => {

@@ -59,7 +59,8 @@ export default {
     this.isLoading = true
     Person.getAll()
       .then((result) => {
-        this.persons = this.getFireBaseList(result)
+        // this.persons = this.getFireBaseList(result)
+        this.persons = result.data
         this.isLoading = false
       })
       .catch((err) => {
@@ -86,7 +87,7 @@ export default {
     },
 
     handleEdit(row){
-       this.$router.push({
+      this.$router.push({
         name: "EditPerson",
         params: { model: row }
       });

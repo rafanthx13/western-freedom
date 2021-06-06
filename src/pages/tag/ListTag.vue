@@ -16,9 +16,9 @@
           {{ props.row.name }}
         </b-table-column>
 
-        <b-table-column field="type_tag" label="Tipo de Tag" centered v-slot="props">
+        <!-- <b-table-column field="type_tag" label="Tipo de Tag" centered v-slot="props">
           <span :class="class_type(props.row.type_tag)"> {{ props.row.type_tag }} </span>
-        </b-table-column>
+        </b-table-column> -->
 
         <b-table-column field="id" label="Editar" width="40" centered v-slot="props">
           <b-button class="is-warning edit-button" @click="handleEdit(props.row)">
@@ -64,7 +64,7 @@ export default {
     this.isLoading = true
     Tag.getAll()
       .then((result) => {
-        this.tags = this.getFireBaseList(result);
+        this.tags = result.data;
         this.isLoading = false
       })
       .catch((err) => {
@@ -76,13 +76,13 @@ export default {
 
   methods: {
 
-    class_type(value) {
-      if (value == 'person') {
-          return 'tag is-success'
-      } else if (value == 'news') {
-          return 'tag is-warning'
-      }
-    },
+    // class_type(value) {
+    //   if (value == 'person') {
+    //       return 'tag is-success'
+    //   } else if (value == 'news') {
+    //       return 'tag is-warning'
+    //   }
+    // },
 
     modalCreateTag() {
       this.$buefy.modal.open({

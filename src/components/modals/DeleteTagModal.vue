@@ -24,14 +24,14 @@
             </b-input>
           </b-field>
 
-          <b-field label="Tipo de Tag">
+          <!-- <b-field label="Tipo de Tag">
             <b-input
               type="text"
               :value="row.type_tag"
               disabled
             >
             </b-input>
-          </b-field>
+          </b-field> -->
 
         </section>
 

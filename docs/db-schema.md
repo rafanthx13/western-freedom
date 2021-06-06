@@ -31,4 +31,3 @@ person_x_news
 + id_person
 + id_news
 
-

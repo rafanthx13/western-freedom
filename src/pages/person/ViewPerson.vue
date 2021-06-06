@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import Person_x_News from "../../api/Person_x_News";
+// import Person_x_News from "../../api/Person_x_News";
 import News from "../../api/News";
 import Person from "../../api/Person";
 import moment from "moment";
@@ -123,8 +123,8 @@ export default {
     if(!this.$route.params.model){
       Person.getOne(this.$route.params.id)
         .then((result) => {
-          this.person = result.data();
-          this.age = moment().diff( moment(this.person.birth_date, "MM-DD-YYYY"), 'years');
+          this.person = result.data
+          this.age = moment().diff( moment(this.person.birth_date, "YYYY-MM-DD"), 'years');
           this.initializeViewPerson()
         })
         .catch((err) => {
@@ -134,7 +134,7 @@ export default {
         });
     } else {
       this.person = this.$route.params.model;
-      this.age = moment().diff( moment(this.person.birth_date, "MM-DD-YYYY"), 'years');
+      this.age = moment().diff( moment(this.person.birth_date, "YYYY-MM-DD"), 'years');
       this.initializeViewPerson()
     }
   },
@@ -142,26 +142,34 @@ export default {
   methods: {
 
     initializeViewPerson(){
-      this.person.birth_date = moment(this.person.birth_date, "MM-DD-YYYY").format(
+      this.person.birth_date = moment(this.person.birth_date, "YYYY-MM-DD").format(
         "DD/MM/YYYY"
       ); // recebe no format DD-MM-YYYY e converte para DD/MM/YYYY
-      Person_x_News.getAllfromId(this.person.id)
+      console.log('zzzzzzzzzzzz', this.person)
+      News.getNewsFromOnePerson(this.person.id)
         .then((result) => {
-          let listNews = this.getFireBaseList(result).map((el) => el.id_news)
-          if(listNews.length != 0){
-            this.news = News.getlist(listNews)
+          if(result.data){
+            this.news = result.data
             this.isLoading = false
           } else {
-            this.news = [] // sem noticias
+            this.news = []
             this.isLoading = false
             this.isEmpty = true
           }
+          // let listNews = this.getFireBaseList(result).map((el) => el.id_news)
+          // if(listNews.length != 0){
+          //   this.news = News.getlist(listNews)
+          //   this.isLoading = false
+          // } else {
+          //   this.news = [] // sem noticias
+          //   this.isLoading = false
+          //   this.isEmpty = true
+          // }
         })
         .catch((err) => {
           this.notify_error('Erro ao carregar as notícias')
           console.error(err);
           this.isLoading = false
-
         });
     },
 

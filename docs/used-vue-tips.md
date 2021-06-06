@@ -172,5 +172,37 @@ VUE_APP_APP_ID=
 VUE_APP_MEASUREMENT_ID=
 ````
 
-Assim, as variáveis do Netlify podem ser colocados no Deploy, **MAS NÃO FICA SEGURO**
+Assim, as variáveis do Netlify podem ser colocados no Deploy, **MAS NÃO FICA SEGURO
 
+
+
+## Acessando campos de error Axios
+
+````js
+axios.get('/api/xyz/abcd')
+  .catch(function (error) {
+    if (error.response) {
+      // Request made and server responded
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.log(error.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log('Error', error.message);
+    }
+
+  });
+````
+## Tetar propriedade de OBjeto JS deep
+
+Existe b['re']['alfa']['u'] = 4
+
+Agora se eu testo
+
+b?.re?.alfa?.u
+4
+b?.re1?.alfa?.u
+undefined

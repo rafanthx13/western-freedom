@@ -2,7 +2,7 @@
 let URL; // BackEnd
 if(window.location.hostname == 'localhost'){
   // local
-  URL = 'http://localhost:3000';
+  URL = 'http://localhost:8000/api'; // Django API
 } else {
   // production
   URL = 'https://price-log-server.herokuapp.com'
@@ -12,19 +12,27 @@ const routes = {
     state: {
       URL: URL,
       person: {
-        post: URL + '/person',
+        post: URL + '/person/',
         put: URL + '/person/',
         delete: URL + '/person/',
-        getAll: URL + '/person',
+        getAll: URL + '/person/',
         getOne: URL + '/person/',
+        getNewsFromOnePerson: URL + '/person'
       },
       news: {
-        post: URL + '/news',
+        post: URL + '/news/',
         put: URL + '/news/',
         delete: URL + '/news/',
-        getAll: URL + '/news',
+        getAll: URL + '/news/',
         getOne: URL + '/news/',
-        getlist: URL + '/news',
+        getlist: URL + '/news/',
+      },
+      tags: {
+        post: URL + '/tag/',
+        put: URL + '/tag/',
+        delete: URL + '/tag/',
+        getAll: URL + '/tag/',
+        getOne: URL + '/tag/',
       },
       tags_to_person: {
         post: URL + '/tags_to_person',
@@ -32,12 +40,7 @@ const routes = {
         delete: URL + '/tags_to_person/',
         getAll: URL + '/tags_to_person',
       },
-      tags: {
-        post: URL + '/tags',
-        put: URL + '/tags/',
-        delete: URL + '/tags/',
-        getAll: URL + '/tags',
-      },
+
       tags_to_news: {
         post: URL + '/tags_to_news',
         put: URL + '/tags_to_news/',

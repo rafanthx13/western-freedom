@@ -25,14 +25,14 @@
                 </b-field>
               </ValidationProvider>
 
-              <b-field label="Type">
+              <!-- <b-field label="Type">
                 <b-select placeholder="Escolha o tipo da Tag" v-model="tag.type_tag">
                     <option v-for="type in listing_type_tag" :value="type" v-bind:key="type">
                       {{ type }}
                     </option>
-                    <!-- <option value="2">Option 2</option> -->
+                    <option value="2">Option 2</option>
                 </b-select>
-              </b-field>
+              </b-field> -->
 
             </form>
           </ValidationObserver>
@@ -64,7 +64,7 @@ extend("max", {
   message: "O campo não pode ser maior que 30",
 });
 
-import store from '../../store/index'
+// import store from '../../store/index'
 import Tag from "../../api/Tag";
 import notificationMixin from './../../mixins/notifications'
 
@@ -89,7 +89,7 @@ export default {
   },
 
   created () {
-    this.listing_type_tag = store.getters.getTypeTags.dropdown
+    // this.listing_type_tag = store.getters.getTypeTags.dropdown
   },
 
   methods: {
@@ -99,11 +99,16 @@ export default {
         if (formIsValid) {
           Tag.post(this.tag)
             .then((result) => {
-              this.$emit('isCreated', result.data())
+              this.$emit('isCreated', result.data)
               this.$emit('close')
             })
             .catch((err) => {
               console.error(err);
+              console.log(err.message);
+              console.log(err.response.data.name);
+              if(err.response.data.name == "tag with this name already exists."){
+                this.$emit('isRepeated', true)
+              }
               this.$emit('isCreated', false)
               this.$emit('close')
             });

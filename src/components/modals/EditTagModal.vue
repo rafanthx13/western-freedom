@@ -24,13 +24,13 @@
             </b-input>
           </b-field>
 
-          <b-field label="Type">
+          <!-- <b-field label="Type">
             <b-select placeholder="Escolha o tipo da Tag" v-model="row.type_tag">
                 <option v-for="type in listing_type_tag" :value="type" v-bind:key="type">
                   {{ type }}
                 </option>
             </b-select>
-          </b-field>
+          </b-field> -->
 
         </section>
         <footer class="modal-card-foot">
@@ -56,7 +56,7 @@ export default {
   methods: {
 
     editTag() {
-      Tag.put(this.row.id, this.row)
+      Tag.put(this.row)
         .then(() => {
           this.$emit('isDeleted', this.row)
           this.$emit('close')

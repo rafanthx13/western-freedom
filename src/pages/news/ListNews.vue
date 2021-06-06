@@ -45,7 +45,19 @@
                   <b-taglist centered>
                     <b-tag
                       type="is-info"
-                      v-for="(value, key) in props.row.news_tag"
+                      v-for="(value, key) in props.row.news_tags"
+                      v-bind:key="key"
+                    >
+                      {{ value.name }}
+                    </b-tag>
+                  </b-taglist>
+                </div>
+                <p>Tags de Pessoa</p>
+                <div class="is-flex is-flex-direction-row is-justify-content-center">
+                  <b-taglist centered>
+                    <b-tag
+                      type="is-info"
+                      v-for="(value, key) in props.row.persons_news"
                       v-bind:key="key"
                     >
                       {{ value.name }}
@@ -88,7 +100,7 @@ import moment from 'moment'
     filters: {
       // Convert MM-DD-YYYY para DD/MM/YYYY
       convertDate: function (value) {
-        return moment(value, "MM-DD-YYYY").format("DD/MM/YYYY");
+        return moment(value, "YYYY-MM-DD").format("DD/MM/YYYY");
       }
     },
 
@@ -96,7 +108,8 @@ import moment from 'moment'
       this.isLoading = true
       News.getAll()
         .then((result) => {
-          this.news = this.getFireBaseList(result)
+          // this.news = this.getFireBaseList(result)
+          this.news = result.data
           this.isLoading = false
         })
         .catch((err) => {
