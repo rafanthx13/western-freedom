@@ -2,10 +2,11 @@
 let URL; // BackEnd
 if(window.location.hostname == 'localhost'){
   // local
-  URL = 'http://localhost:8000/api'; // Django API
+  // URL = 'http://localhost:8000/api'; // Django API
+  URL = 'https://archive-person-api.herokuapp.com/api'
 } else {
   // production
-  URL = 'https://price-log-server.herokuapp.com'
+  URL = 'https://archive-person-api.herokuapp.com/api'
 }
 
 const routes = {
